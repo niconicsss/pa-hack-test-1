@@ -18,7 +18,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Logistics Learning Dashboard</title>
+    <title>SkillCargo Dashboard</title>
     <link rel="stylesheet" href="styles/dashboard.css">
 </head>
 <body>
