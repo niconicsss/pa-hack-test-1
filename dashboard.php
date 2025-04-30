@@ -39,7 +39,7 @@ $user = $stmt->fetch();
     <a href="orders/status.php">Track Orders</a>
 
     <!-- Button to log out -->
-    <a href="includes/logout.php">Logout</a>
+    <a href="login.php">Logout</a>
 
 </body>
 </html>
