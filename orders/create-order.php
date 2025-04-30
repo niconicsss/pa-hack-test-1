@@ -1,7 +1,4 @@
-<?php
-include('../includes/auth.php');
-include('../config/db.php');
-?>
+<?php include('../includes/auth.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,23 +8,15 @@ include('../config/db.php');
 <body>
 
 <h2>Place an Order</h2>
-
 <form action="../actions/place_order.php" method="POST">
     <label for="business_id">Business</label><br>
     <select name="business_id" id="business_id" required>
         <?php
-        try {
-            $sql = "SELECT id, name FROM businesses";
-            $stmt = $pdo->query($sql);
-
-            while ($business = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $id = htmlspecialchars($business['id']);
-                $name = htmlspecialchars($business['name']);
-                echo "<option value='{$id}'>{$name}</option>";
-            }
-        } catch (PDOException $e) {
-            echo "<option disabled>Error loading businesses</option>";
-            // Optionally log the error: error_log($e->getMessage());
+        include('../config/db.php');
+        $sql = "SELECT * FROM businesses";
+        $stmt = $pdo->query($sql);
+        while ($business = $stmt->fetch()) {
+            echo "<option value='" . $business['id'] . "'>" . htmlspecialchars($business['name']) . "</option>";
         }
         ?>
     </select><br><br>
