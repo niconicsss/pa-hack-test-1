@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Place Order</title>
+    <link rel="stylesheet" href="../styles/create-order.css">
 </head>
 <body>
 
