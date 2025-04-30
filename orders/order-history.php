@@ -25,22 +25,8 @@ $orders = $stmt->fetchAll();
 <head>
     <meta charset="UTF-8">
     <title>Your Order History</title>
-    <style>
-        body { font-family: Arial, sans-serif; padding: 20px; }
-        .order-card {
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            padding: 15px;
-            margin-bottom: 15px;
-        }
-        .order-card h3 {
-            margin: 0 0 10px;
-        }
-    </style>
-</head>
-<body>
 
-<h2>Your Orders</h2>
+<h1>Your Orders</h1>
 
 <?php if (count($orders) > 0): ?>
     <?php foreach ($orders as $order): ?>
@@ -58,6 +44,7 @@ $orders = $stmt->fetchAll();
 <p>
     <a href="place-order.php">➕ Place New Order</a>
     <a href="order-success.php">✅ View Order Success Page</a>
+    <a class="button" href="../dashboard.php">⬅ Back to Dashboard</a>
 </p>
 
 </body>

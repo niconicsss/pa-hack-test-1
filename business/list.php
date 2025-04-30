@@ -1,96 +1,96 @@
-<?php require_once '../includes/auth.php'; ?>
+<?php
+require '../includes/auth.php';
+require '../config/db.php';
+$userId = $_SESSION['user_id'] ?? 0;
+
+$stmt = $pdo->prepare("SELECT * FROM users WHERE id = ?");
+$stmt->execute([$userId]);
+$user = $stmt->fetch();
+
+$category = $user['business'];
+$radius = $user['radius'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Nearby Suppliers</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <title>Nearby Businesses</title>
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
     <style>
-        body { font-family: Arial, sans-serif; }
-        #map { height: 400px; width: 100%; margin-top: 20px; }
-        #results { margin-top: 20px; }
-        .supplier {
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
+        #map {
+            width: 100%;
+            height: 500px;
         }
     </style>
 </head>
-<body>
-    <h2>Nearby Suppliers</h2>
+<body class="container mt-4">
 
+    <h2>Nearby Suppliers (<?= htmlspecialchars($category) ?>)</h2>
     <div id="map"></div>
-    <div id="results">Loading suppliers...</div>
+    <div id="businessList" class="row mt-4"></div>
 
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-    let map;
+        const category = "<?= $category ?>";
+        const radius = <?= $radius ?>;
+        let userLat = null;
+        let userLng = null;
 
-    function loadNearbySuppliers() {
-        if (!navigator.geolocation) {
-            document.getElementById('results').innerText = "Geolocation not supported.";
-            return;
-        }
+        function initMap() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(pos => {
+                    userLat = pos.coords.latitude;
+                    userLng = pos.coords.longitude;
 
-        navigator.geolocation.getCurrentPosition(pos => {
-            const lat = pos.coords.latitude;
-            const lng = pos.coords.longitude;
-
-            if (!map) {
-                map = L.map('map').setView([lat, lng], 13);
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    attribution: '&copy; OpenStreetMap contributors'
-                }).addTo(map);
-
-                // Mark user location
-                L.marker([lat, lng]).addTo(map)
-                    .bindPopup("You are here").openPopup();
-            }
-
-            fetch(`search.php?lat=${lat}&lng=${lng}`)
-                .then(res => res.json())
-                .then(data => {
-                    const container = document.getElementById('results');
-                    container.innerHTML = '';
-
-                    if (data.error) {
-                        container.innerText = data.error;
-                        return;
-                    }
-
-                    if (data.length === 0) {
-                        container.innerText = 'No suppliers found nearby.';
-                        return;
-                    }
-
-                    data.forEach(supplier => {
-                        // Add to list
-                        const div = document.createElement('div');
-                        div.className = 'supplier';
-                        div.innerHTML = `
-                            <strong>${supplier.name}</strong><br>
-                            ${supplier.address}<br>
-                            Distance: ${parseFloat(supplier.distance).toFixed(2)} km
-                        `;
-                        container.appendChild(div);
-
-                        // Add to map
-                        L.marker([supplier.latitude, supplier.longitude]).addTo(map)
-                            .bindPopup(`<strong>${supplier.name}</strong><br>${supplier.address}<br>${supplier.distance.toFixed(2)} km`);
+                    const userLocation = { lat: userLat, lng: userLng };
+                    const map = new google.maps.Map(document.getElementById("map"), {
+                        zoom: 13,
+                        center: userLocation
                     });
-                })
-                .catch(err => {
-                    document.getElementById('results').innerText = 'Error fetching data.';
-                    console.error(err);
+
+                    new google.maps.Marker({
+                        position: userLocation,
+                        map,
+                        title: "You are here",
+                        icon: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+                    });
+
+                    fetch(`/business/search.php?lat=${userLat}&lng=${userLng}&category=${category}&radius=${radius}`)
+                        .then(res => res.json())
+                        .then(data => {
+                            if (Array.isArray(data)) {
+                                data.forEach(business => {
+                                    const position = { lat: parseFloat(business.latitude), lng: parseFloat(business.longitude) };
+
+                                    new google.maps.Marker({
+                                        position,
+                                        map,
+                                        title: business.name
+                                    });
+
+                                    document.getElementById("businessList").innerHTML += `
+                                        <div class="col-md-4">
+                                            <div class="card mb-3">
+                                                <div class="card-body">
+                                                    <h5>${business.name}</h5>
+                                                    <p>${business.address}</p>
+                                                    <p class="text-muted">${business.distance.toFixed(2)} km away</p>
+                                                    <a href="/orders/create.php?business_id=${business.id}" class="btn btn-sm btn-primary">Order</a>
+                                                </div>
+                                            </div>
+                                        </div>`;
+                                });
+                            } else {
+                                alert("No nearby businesses found.");
+                            }
+                        });
+                }, () => {
+                    alert("Geolocation failed.");
                 });
-
-        }, () => {
-            document.getElementById('results').innerText = "Location access denied.";
-        });
-    }
-
-    loadNearbySuppliers();
+            } else {
+                alert("Geolocation not supported.");
+            }
+        }
     </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_REAL_API_KEY&callback=initMap" async defer></script>
 </body>
 </html>

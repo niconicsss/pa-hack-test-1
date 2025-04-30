@@ -33,13 +33,13 @@ $user = $stmt->fetch();
     <a href="business/list.php">Search Nearby Businesses</a>
 
     <!-- Link to view orders -->
-    <a href="orders/history.php">View Orders</a>
+    <a href="orders/order-history.php">View Orders</a>
 
     <!-- Link to track orders -->
-    <a href="orders/status.php">Track Orders</a>
+    <a href="orders/order-status.php">Track Orders</a>
 
     <!-- Button to log out -->
-    <a href="includes/logout.php">Logout</a>
+    <a href="login.php">Logout</a>
 
 </body>
 </html>
