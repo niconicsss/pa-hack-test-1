@@ -1,0 +1,108 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #EEEEEE;
+    padding: 20px;
+    color: #333;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    background-color: #FFFFFF;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(125, 10, 10, 0.2);
+}
+
+h1, h2, h3 {
+    color: #7D0A0A;
+    margin-bottom: 1rem;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+small {
+    color: #777;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+a {
+    color: #7D0A0A;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #BF3131;
+}
+
+.reply-container {
+    margin-bottom: 15px;
+    padding: 1rem;
+    border: 1px solid #BF3131;
+    border-radius: 8px;
+    background-color: #FAFAFA;
+}
+
+.reply-container small {
+    margin-top: 0.5rem;
+    display: block;
+}
+
+form {
+    margin-top: 1rem;
+}
+
+textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #BF3131;
+    border-radius: 5px;
+    background-color: #FAFAFA;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 14px;
+    resize: vertical;
+    margin-bottom: 1rem;
+}
+
+button {
+    padding: 0.75rem 1.5rem;
+    background-color: #BF3131;
+    color: #EEEEEE;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #7D0A0A;
+}
+
+button.delete {
+    background-color: #DC3545;
+}
+
+button.delete:hover {
+    background-color: #B02A37;
+}
+
+.cancel-link {
+    display: inline-block;
+    margin-left: 10px;
+    color: #7D0A0A;
+}
+
+.cancel-link:hover {
+    color: #BF3131;
+}
