@@ -20,25 +20,65 @@ $user = $stmt->fetch();
 <head>
     <meta charset="UTF-8">
     <title>Dashboard</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        #map { height: 500px; width: 100%; margin-top: 20px; }
+        button { margin-top: 10px; }
+    </style>
 </head>
 <body>
 
     <h1>Welcome, <?php echo htmlspecialchars($user['name']); ?></h1>
-
     <h2>Your Business: <?php echo htmlspecialchars($user['business']); ?></h2>
     <p>Radius: <?php echo htmlspecialchars($user['radius']); ?> km</p>
 
     <!-- Button to search nearby businesses -->
-    <a href="business/search.php">Search Nearby Businesses</a>
+    <button onclick="loadMap()">View Nearby Businesses</button>
+    <div id="map"></div>
 
-    <!-- Link to view orders -->
-    <a href="orders/history.php">View Orders</a>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+    let map;
 
-    <!-- Link to track orders -->
-    <a href="orders/status.php">Track Orders</a>
+    function loadMap() {
+        if (!navigator.geolocation) {
+            alert("Geolocation not supported.");
+            return;
+        }
 
-    <!-- Button to log out -->
-    <a href="includes/logout.php">Logout</a>
+        navigator.geolocation.getCurrentPosition(function(pos) {
+            const userLat = pos.coords.latitude;
+            const userLng = pos.coords.longitude;
 
+            if (!map) {
+                map = L.map('map').setView([userLat, userLng], 13);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; OpenStreetMap contributors'
+                }).addTo(map);
+
+                // Mark user's location
+                L.marker([userLat, userLng]).addTo(map)
+                    .bindPopup("You are here").openPopup();
+            }
+
+            // Fetch businesses from your PHP API
+            fetch(`/your-app/business/search.php?lat=${userLat}&lng=${userLng}`)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.error) {
+                        alert(data.error);
+                        return;
+                    }
+
+                    data.forEach(b => {
+                        L.marker([b.latitude, b.longitude]).addTo(map)
+                            .bindPopup(`<strong>${b.name}</strong><br>${b.address}<br>Category: ${b.category}<br>Distance: ${b.distance.toFixed(2)} km`);
+                    });
+                });
+        }, function(err) {
+            alert("Location access denied or failed.");
+        });
+    }
+    </script>
 </body>
 </html>
