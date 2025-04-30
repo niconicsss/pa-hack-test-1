@@ -33,7 +33,7 @@ $user = $stmt->fetch();
     <a href="business/search.php">Search Nearby Businesses</a>
 
     <!-- Link to view orders -->
-    <a href="orders/history.php">View Orders</a>
+    <a href="orders/order-history.php">View Orders</a>
 
     <!-- Link to track orders -->
     <a href="orders/status.php">Track Orders</a>
