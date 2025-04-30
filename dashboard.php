@@ -23,13 +23,23 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
 </head>
 <body>
 
+    <!-- Background Slideshow -->
+    <div class="slideshow">
+        <div class="slide"></div>
+        <div class="slide"></div>
+        <div class="slide"></div>
+        <div class="slide"></div>
+        <div class="slide"></div>
+        <div class="slide"></div>
+    </div>
+
     <!-- Top Bar -->
     <div class="logout-container">
         <span>Welcome, <?php echo htmlspecialchars($user['name']); ?></span>
         <a href="logout.php">🚪 Logout</a>
     </div>
 
-    <h1>📦 Logistics Skills Hub</h1>
+    <h1>📦 Skill Cargo </h1>
 
     <div class="dashboard-sections">
         <section>
