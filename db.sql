@@ -3,7 +3,8 @@ USE digital_training;
 
 CREATE TABLE companies (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL UNIQUE
+    name VARCHAR(255) NOT NULL UNIQUE,
+    email_domain varchar (255) not null
 );
 
 CREATE TABLE users (
@@ -106,13 +107,13 @@ INSERT INTO courses (title, description, category, level, video_url, image_url) 
 ('Cold Chain Logistics', 'Managing temperature-sensitive logistics', 'Logistics', 'advanced', 'http://example.com/video5', 'http://example.com/image5'),
 ('E-commerce Shipping Solutions', 'Learn to handle logistics for e-commerce businesses', 'Logistics', 'beginner', 'http://example.com/video6', 'http://example.com/image6');
 
-INSERT INTO companies (name) VALUES
-('2GO Group, Inc.'),
-('LBC Express, Inc.'),
-('JRS Express'),
-('Airspeed International Corporation'),
-('F2 Logistics Philippines, Inc.'),
-('Gothong Southern');
+INSERT INTO companies (name, email_domain) VALUES
+('2GO Group, Inc.', '2go.com'),
+('LBC Express, Inc.', 'lbc.com'),
+('JRS Express', 'jrs.com'),
+('Airspeed International Corporation', 'air.ph'),
+('F2 Logistics Philippines, Inc.', 'f2.com'),
+('Gothong Southern', 'gothong.com');
 
 -- 2GO Group, Inc. (company_id = 1)
 INSERT INTO company_courses (company_id, course_id) VALUES
@@ -145,42 +146,6 @@ INSERT INTO company_courses (company_id, course_id) VALUES
 INSERT INTO company_courses (company_id, course_id) VALUES
 (6, 2),  -- Advanced Shipping Techniques
 (6, 3);  -- Warehousing Essentials
-
-
-
-
-INSERT INTO companies (name, email_domain) VALUES
-('2GO Group, Inc.', '2go.com'),
-('LBC Express, Inc.', 'lbc.com'),
-('JRS Express', 'jrs.com'),
-('Airspeed International Corporation', 'air.ph'),
-('F2 Logistics Philippines, Inc.', 'f2.com'),
-('Gothong Southern', 'gothong.com');
-
-UPDATE companies
-SET email_domain = '2gogroup.com'
-WHERE name = '2GO Group, Inc.';
-
-UPDATE companies
-SET email_domain = 'lbcexpress.com'
-WHERE name = 'LBC Express, Inc.';
-
-UPDATE companies
-SET email_domain = 'jrs.com'
-WHERE name = 'JRS Express';
-
-UPDATE companies
-SET email_domain = 'airspeed.ph'
-WHERE name = 'Airspeed International Corporation';
-
-UPDATE companies
-SET email_domain = 'f2logistics.com'
-WHERE name = 'F2 Logistics Philippines, Inc.';
-
-UPDATE companies
-SET email_domain = 'gothong.com'
-WHERE name = 'Gothong Southern';
-
 
 -- questions--
 INSERT INTO quizzes (course_id, question, option_1, option_2, option_3, option_4, correct_option) 
@@ -237,3 +202,4 @@ drop table companies;
 drop database digital_training;
 select * from users;
 select * from companies;
+select * from quizzes;
