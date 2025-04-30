@@ -8,6 +8,8 @@ if (!isset($_GET['id'])) {
 }
 
 $threadId = (int)$_GET['id'];
+$userId = $_SESSION['user_id'] ?? null;
+$editingReplyId = $_GET['edit_reply'] ?? null;
 
 // Fetch thread
 $stmt = $pdo->prepare("SELECT forum_threads.*, users.name FROM forum_threads 
@@ -20,23 +22,69 @@ if (!$thread) {
     exit;
 }
 
-// Handle reply
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['user_id'], $_POST['content'])) {
-    $replyContent = trim($_POST['content']);
-    if ($replyContent) {
-        $replyStmt = $pdo->prepare("INSERT INTO forum_replies (thread_id, user_id, content) VALUES (?, ?, ?)");
-        $replyStmt->execute([$threadId, $_SESSION['user_id'], $replyContent]);
-        header("Location: thread.php?id=" . $threadId);
+// Handle reply submission, update, or delete
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($userId)) {
+    // New reply
+    if (isset($_POST['content']) && empty($_POST['reply_id'])) {
+        $replyContent = trim($_POST['content']);
+        if ($replyContent) {
+            $stmt = $pdo->prepare("INSERT INTO forum_replies (thread_id, user_id, content) VALUES (?, ?, ?)");
+            $stmt->execute([$threadId, $userId, $replyContent]);
+        }
+        header("Location: thread.php?id=$threadId");
+        exit;
+    }
+
+    // Update reply
+    if (isset($_POST['reply_id'], $_POST['content'])) {
+        $replyId = (int)$_POST['reply_id'];
+        $replyContent = trim($_POST['content']);
+
+        // Check ownership
+        $stmt = $pdo->prepare("SELECT * FROM forum_replies WHERE id = ? AND user_id = ?");
+        $stmt->execute([$replyId, $userId]);
+        $reply = $stmt->fetch();
+        if ($reply && $replyContent) {
+            $stmt = $pdo->prepare("UPDATE forum_replies SET content = ? WHERE id = ?");
+            $stmt->execute([$replyContent, $replyId]);
+        }
+
+        header("Location: thread.php?id=$threadId");
+        exit;
+    }
+
+    // Delete reply
+    if (isset($_POST['delete_reply_id'])) {
+        $replyId = (int)$_POST['delete_reply_id'];
+
+        // Check ownership
+        $stmt = $pdo->prepare("SELECT * FROM forum_replies WHERE id = ? AND user_id = ?");
+        $stmt->execute([$replyId, $userId]);
+        $reply = $stmt->fetch();
+        if ($reply) {
+            $stmt = $pdo->prepare("DELETE FROM forum_replies WHERE id = ?");
+            $stmt->execute([$replyId]);
+        }
+
+        header("Location: thread.php?id=$threadId");
         exit;
     }
 }
 
-// Get replies
-$replies = $pdo->prepare("SELECT forum_replies.*, users.name FROM forum_replies 
-                          JOIN users ON forum_replies.user_id = users.id 
-                          WHERE forum_replies.thread_id = ? ORDER BY forum_replies.created_at ASC");
-$replies->execute([$threadId]);
-$replies = $replies->fetchAll(PDO::FETCH_ASSOC);
+// Fetch replies
+$stmt = $pdo->prepare("SELECT forum_replies.*, users.name FROM forum_replies 
+                       JOIN users ON forum_replies.user_id = users.id 
+                       WHERE forum_replies.thread_id = ? ORDER BY forum_replies.created_at ASC");
+$stmt->execute([$threadId]);
+$replies = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// If editing a reply, fetch it
+$editingReply = null;
+if ($editingReplyId && $userId) {
+    $stmt = $pdo->prepare("SELECT * FROM forum_replies WHERE id = ? AND user_id = ?");
+    $stmt->execute([$editingReplyId, $userId]);
+    $editingReply = $stmt->fetch();
+}
 ?>
 
 <!DOCTYPE html>
@@ -52,17 +100,31 @@ $replies = $replies->fetchAll(PDO::FETCH_ASSOC);
     <hr>
     <h2>Replies</h2>
     <?php foreach ($replies as $reply): ?>
-        <div style="margin-bottom:10px;">
+        <div style="margin-bottom:10px; border:1px solid #ccc; padding:10px;">
             <p><?= nl2br(htmlspecialchars($reply['content'])) ?></p>
             <small>By <?= htmlspecialchars($reply['name']) ?> on <?= $reply['created_at'] ?></small>
+
+            <?php if ($userId && $reply['user_id'] == $userId): ?>
+                <form method="POST" style="display:inline;" onsubmit="return confirm('Delete this reply?');">
+                    <input type="hidden" name="delete_reply_id" value="<?= $reply['id'] ?>">
+                    <button type="submit" style="color:red;">Delete</button>
+                </form>
+                <a href="thread.php?id=<?= $threadId ?>&edit_reply=<?= $reply['id'] ?>" style="margin-left:10px;">Edit</a>
+            <?php endif; ?>
         </div>
     <?php endforeach; ?>
 
-    <?php if (isset($_SESSION['user_id'])): ?>
-        <h3>Post a Reply</h3>
+    <?php if ($userId): ?>
+        <h3><?= $editingReply ? 'Edit Reply' : 'Post a Reply' ?></h3>
         <form method="POST">
-            <textarea name="content" required></textarea><br>
-            <button type="submit">Reply</button>
+            <?php if ($editingReply): ?>
+                <input type="hidden" name="reply_id" value="<?= $editingReply['id'] ?>">
+            <?php endif; ?>
+            <textarea name="content" required><?= $editingReply ? htmlspecialchars($editingReply['content']) : '' ?></textarea><br>
+            <button type="submit"><?= $editingReply ? 'Update Reply' : 'Reply' ?></button>
+            <?php if ($editingReply): ?>
+                <a href="thread.php?id=<?= $threadId ?>">Cancel</a>
+            <?php endif; ?>
         </form>
     <?php else: ?>
         <p><a href="../login.php">Log in</a> to reply.</p>

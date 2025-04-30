@@ -1,0 +1,107 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #EEEEEE;
+    color: #333;
+    padding: 20px;
+}
+
+h2 {
+    color: #7D0A0A;
+    margin-bottom: 1rem;
+}
+
+form {
+    background-color: #FFFFFF;
+    padding: 20px;
+    margin-bottom: 25px;
+    border: 1px solid #FFFFFF;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(125, 10, 10, 0.1);
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0 15px;
+    border: 1px solid #BF3131;
+    border-radius: 5px;
+    background-color: #FAFAFA;
+    font-size: 1em;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+button {
+    background-color: #BF3131;
+    color: #EEEEEE;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #7D0A0A;
+}
+
+a {
+    color: #7D0A0A;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: #BF3131;
+    text-decoration: underline;
+}
+
+.thread {
+    background-color: #FFFFFF;
+    border: 1px solid #DDD;
+    margin-bottom: 15px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(125, 10, 10, 0.1);
+}
+
+.thread h3 {
+    margin: 0 0 10px;
+    color: #7D0A0A;
+}
+
+.thread small {
+    color: #777;
+    display: block;
+    margin-top: 8px;
+}
+
+.thread form {
+    display: inline;
+}
+
+.thread button {
+    background-color: #E74C3C;
+    margin-top: 10px;
+}
+
+.thread button:hover {
+    background-color: #C0392B;
+}
+
+.cancel-link {
+    margin-left: 10px;
+    color: #888;
+}
