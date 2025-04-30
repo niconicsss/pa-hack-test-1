@@ -26,7 +26,7 @@ $user = $stmt->fetch();
 
     <!-- Logout Button (Top Right) -->
     <div class="logout-container">
-        <a href="logout.php">🚪 Logout</a>
+        <a href="login.php">🚪 Logout</a>
     </div>
 
     <h1>Welcome, <?php echo htmlspecialchars($user['name']); ?></h1>
