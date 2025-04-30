@@ -52,7 +52,7 @@ $progress_data = $progress_stmt->fetchAll(PDO::FETCH_KEY_PAIR);
 <body>
 
 <div class="top-right-link">
-    <a href="../dashboard.php">← Back to Dashboard</a>
+    <a href="../dashboard.php" class="back-button">← Back to Dashboard</a>
 </div>
 
     <h1>📚 Course Library</h1>

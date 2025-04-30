@@ -13,6 +13,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative; /* Enables absolute positioning for child elements */
 }
 
 /* Header */
@@ -59,14 +60,14 @@ select {
     width: 100%;
     max-width: 1000px;
     text-align: center;
-    margin-bottom: 2rem; /* Adds space between header/form and course list */
+    margin-bottom: 2rem;
 }
 
 /* Course List */
 .course-list {
     width: 100%;
     max-width: 1000px;
-    margin-top: 2rem; /* Add spacing above the course list */
+    margin-top: 2rem;
 }
 
 .course-list ul {
@@ -120,8 +121,9 @@ a.btn:hover {
 
 /* Back to Dashboard Button Styled */
 a.back-button {
-    display: inline-block;
-    margin-top: 3rem;
+    position: absolute;
+    top: 1.5rem;
+    right: 2rem;
     padding: 0.6rem 1.2rem;
     background-color: #BF3131;
     color: #EEEEEE;
@@ -129,6 +131,7 @@ a.back-button {
     font-weight: bold;
     border-radius: 5px;
     transition: background-color 0.3s ease;
+    z-index: 1000;
 }
 
 a.back-button:hover {
