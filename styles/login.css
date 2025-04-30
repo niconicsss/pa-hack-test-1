@@ -2,19 +2,19 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-  }
-  
-  body {
+}
+
+body {
     font-family: 'Segoe UI', sans-serif;
     background-color: #EEEEEE;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    color: #000000; 
-  }
-  
-  .login-container {
+    color: #000000; /* Ensures that the default text color is black */
+}
+
+.login-container {
     background-color: #FFFFFF;
     border: 2px solid #FFFFFF;
     border-radius: 10px;
@@ -22,65 +22,64 @@
     width: 100%;
     max-width: 400px;
     box-shadow: 0 4px 8px rgba(125, 10, 10, 0.2);
-    color: #000000; /* ensure inner text stays black */
-  }
-  
-  .login-container h2 {
+    color: #000000; /* Ensure inner text stays black */
+}
+
+.login-container h2 {
     text-align: center;
     margin-bottom: 1.5rem;
-    color: #000000;
-  }
-  
-  .login-container label {
+    color: #000000; /* Ensure the header is black */
+}
+
+.login-container label {
     display: block;
     margin-bottom: 0.5rem;
-    color: #000000;
+    color: #000000; /* Ensure label text is black */
     font-weight: bold;
-  }
-  
-  .login-container input[type="email"],
-  .login-container input[type="password"] {
+}
+
+.login-container input[type="email"],
+.login-container input[type="password"] {
     width: 100%;
     padding: 0.75rem;
     margin-bottom: 1.2rem;
     border: 1px solid #BF3131;
     border-radius: 5px;
     background-color: #FAFAFA;
-    color: #000000; /* input text color */
-  }
-  
-  .login-container button {
+    color: #000000; /* Ensures input text is black */
+}
+
+.login-container button {
     width: 100%;
     padding: 0.75rem;
     background-color: #BF3131;
-    color: #000000; /* button text color */
+    color: #000000; /* Ensures button text is black */
     border: none;
     border-radius: 5px;
     font-weight: bold;
     cursor: pointer;
     transition: background 0.3s ease;
-  }
-  
-  .login-container button:hover {
+}
+
+.login-container button:hover {
     background-color: #7D0A0A;
-    color: #FFFFFF; /* optional: white text on hover */
-  }
-  
-  .login-container .bottom-link {
+    color: #FFFFFF; /* White text on hover for contrast */
+}
+
+.login-container .bottom-link {
     margin-top: 1rem;
     text-align: center;
     font-size: 0.9rem;
-    color: #000000;
-  }
-  
-  .login-container .bottom-link a {
+    color: #000000; /* Ensures the bottom link text is black */
+}
+
+.login-container .bottom-link a {
     color: #000000;
     font-weight: bold;
     text-decoration: none;
     transition: color 0.2s ease;
-  }
-  
-  .login-container .bottom-link a:hover {
+}
+
+.login-container .bottom-link a:hover {
     color: #BF3131;
-  }
-  
+}
