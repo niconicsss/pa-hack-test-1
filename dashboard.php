@@ -30,7 +30,7 @@ $user = $stmt->fetch();
     <p>Radius: <?php echo htmlspecialchars($user['radius']); ?> km</p>
 
     <!-- Button to search nearby businesses -->
-    <a href="business/search.php">Search Nearby Businesses</a>
+    <a href="business/list.php">Search Nearby Businesses</a>
 
     <!-- Button to create order -->
     <a href="orders/create-order.php">Create Order</a>

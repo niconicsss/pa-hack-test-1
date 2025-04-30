@@ -1,28 +1,37 @@
 <?php
-// Include your database connection
-include('../config/db.php');
+require '../includes/auth.php';
+require '../config/db.php';
 
-// Get the lat and lng from the URL
-$lat = isset($_GET['lat']) ? $_GET['lat'] : null;
-$lng = isset($_GET['lng']) ? $_GET['lng'] : null;
+header('Content-Type: application/json');
 
-// If lat or lng is missing, return an error
-if (!$lat || !$lng) {
-    echo json_encode(['error' => 'Missing lat/lng']);
+if (!isset($_GET['lat'], $_GET['lng'], $_GET['category'], $_GET['radius'])) {
+    echo json_encode(['error' => 'Missing parameters']);
     exit;
 }
 
-// Example of a query to fetch businesses within a certain radius
-// Using the Haversine formula to calculate the distance between two latitudes/longitudes
-$sql = "SELECT id, name, address, latitude, longitude, category, 
-                ( 6371 * acos( cos( radians(?) ) * cos( radians(latitude) ) * cos( radians(longitude) - radians(?) ) + sin( radians(?) ) * sin( radians(latitude) ) ) ) AS distance
-        FROM businesses
-        HAVING distance < ?  // Example of radius filter in kilometers
-        ORDER BY distance";
+$userLat = (float) $_GET['lat'];
+$userLng = (float) $_GET['lng'];
+$category = $_GET['category'];
+$radius = (float) $_GET['radius'];
+
+$sql = "SELECT *, 
+    (6371 * ACOS(
+        COS(RADIANS(:lat)) * COS(RADIANS(latitude)) *
+        COS(RADIANS(longitude) - RADIANS(:lng)) +
+        SIN(RADIANS(:lat)) * SIN(RADIANS(latitude))
+    )) AS distance
+FROM businesses
+WHERE category = :category
+HAVING distance <= :radius
+ORDER BY distance ASC";
 
 $stmt = $pdo->prepare($sql);
-$stmt->execute([$lat, $lng, $lat, 10]);  // 10 km radius example
-$businesses = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmt->execute([
+    ':lat' => $userLat,
+    ':lng' => $userLng,
+    ':category' => $category,
+    ':radius' => $radius
+]);
 
-echo json_encode($businesses);
-?>
+$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+echo json_encode($results);
