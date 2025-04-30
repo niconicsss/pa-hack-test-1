@@ -18,7 +18,7 @@ $stmt = $pdo->prepare($sql);
 $stmt->execute([$user_id]);
 
 $orders = $stmt->fetchAll();
-?>
+?>  
 
 <!DOCTYPE html>
 <html lang="en">
