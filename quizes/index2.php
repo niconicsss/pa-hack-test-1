@@ -89,7 +89,7 @@ if (!$company_id) {
     endif;
     ?>
 
-    <p><a href="dashboard.php">← Back to Dashboard</a></p>
+    <p><a href="../dashboard.php">← Back to Dashboard</a></p>
 
 </body>
 </html>
