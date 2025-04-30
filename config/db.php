@@ -2,7 +2,7 @@
 $host = 'localhost';      // Database host
 $dbname = 'business_orders_db'; // Database name
 $username = 'root'; // Database username
-$password = 'ROOT'; // Database password
+$password = 'root'; // Database password
 
 try {
     // Create PDO connection
