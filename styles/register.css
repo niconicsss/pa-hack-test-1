@@ -47,13 +47,14 @@
     width: 100%;
     padding: 0.75rem;
     background-color: #BF3131;
-    color: #000000; /* Black button text */
+    color: #000000;
     border: none;
     border-radius: 5px;
     font-weight: bold;
     cursor: pointer;
     transition: background 0.3s ease;
-  }
+    margin-top: 1rem; /* 👈 Add this line */
+  }  
   
   .register-container button:hover {
     background-color: #7D0A0A;
@@ -77,3 +78,21 @@
     color: #BF3131;
   }
   
+  .register-container label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #000000;
+  }
+  
+  .register-container select {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 2rem; /* increased from 1.2rem */
+    border: 1px solid #000000;
+    border-radius: 5px;
+    background-color: #FAFAFA;
+    color: #000000;
+    font-size: 1rem;
+    appearance: none;
+  }  
