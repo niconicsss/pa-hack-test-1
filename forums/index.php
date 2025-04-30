@@ -4,10 +4,14 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+// Optional: Define root path once if you're including other shared files
+define('ROOT_PATH', dirname(__DIR__));
+
 // Assuming $threads is already passed from the controller
 // Example: $threads = ForumThread::all();
 
-include '../views/shared/header.php';
+// Use __DIR__ to reliably include shared files
+include ROOT_PATH . '/views/shared/header.php';
 ?>
 
 <!DOCTYPE html>
@@ -48,4 +52,7 @@ include '../views/shared/header.php';
 </body>
 </html>
 
-<?php include '../views/shared/footer.php'; ?>
+<?php
+// Footer include
+include ROOT_PATH . '/views/shared/footer.php';
+?>
