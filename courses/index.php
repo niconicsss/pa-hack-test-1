@@ -44,6 +44,11 @@ $progress_data = $progress_stmt->fetchAll(PDO::FETCH_KEY_PAIR);
     <link rel="stylesheet" href="../styles/courses.css">
 </head>
 <body>
+
+<div class="top-right-link">
+    <a href="../dashboard.php">← Back to Dashboard</a>
+</div>
+
     <h1>📚 Course Library</h1>
     <p>Learn essential digital tools and logistics practices to stay competitive in the industry.</p>
 
@@ -78,8 +83,5 @@ $progress_data = $progress_stmt->fetchAll(PDO::FETCH_KEY_PAIR);
                 <?php endforeach; ?>
             </ul>
         <?php endif; ?>
-    </div>
-
-    <p><a href="../dashboard.php">← Back to Dashboard</a></p>
 </body>
 </html>
