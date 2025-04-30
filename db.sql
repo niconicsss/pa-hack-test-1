@@ -61,3 +61,70 @@ CREATE TABLE certifications (
     FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (course_id) REFERENCES courses(id)
 );
+
+CREATE TABLE companies (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL UNIQUE
+);
+
+CREATE TABLE company_courses (
+    company_id INT NOT NULL,
+    course_id INT NOT NULL,
+    PRIMARY KEY (company_id, course_id),
+    FOREIGN KEY (company_id) REFERENCES companies(id) ON DELETE CASCADE,
+    FOREIGN KEY (course_id) REFERENCES courses(id) ON DELETE CASCADE
+);
+
+INSERT INTO courses (title, description, category, level, video_url, image_url) VALUES
+('Logistics 101', 'Introduction to logistics and supply chain management', 'Logistics', 'beginner', 'http://example.com/video1', 'http://example.com/image1'),
+('Advanced Shipping Techniques', 'Learn advanced shipping and delivery techniques', 'Shipping', 'intermediate', 'http://example.com/video2', 'http://example.com/image2'),
+('Warehousing Essentials', 'Fundamentals of warehouse management and operations', 'Warehousing', 'beginner', 'http://example.com/video3', 'http://example.com/image3');
+INSERT INTO courses (title, description, category, level, video_url, image_url) VALUES
+('Customs Procedures', 'Learn the essentials of customs processes and documentation', 'Logistics', 'intermediate', 'http://example.com/video4', 'http://example.com/image4'),
+('Cold Chain Logistics', 'Managing temperature-sensitive logistics', 'Logistics', 'advanced', 'http://example.com/video5', 'http://example.com/image5'),
+('E-commerce Shipping Solutions', 'Learn to handle logistics for e-commerce businesses', 'Logistics', 'beginner', 'http://example.com/video6', 'http://example.com/image6');
+
+-- 2GO Group, Inc. (company_id = 1)
+INSERT INTO company_courses (company_id, course_id) VALUES
+(1, 1),  -- Logistics 101
+(1, 2),  -- Advanced Shipping Techniques
+(1, 3);  -- Warehousing Essentials
+
+-- LBC Express, Inc. (company_id = 2)
+INSERT INTO company_courses (company_id, course_id) VALUES
+(2, 1),  -- Logistics 101
+(2, 4),  -- Customs Procedures
+(2, 5);  -- Cold Chain Logistics
+
+-- JRS Express (company_id = 3)
+INSERT INTO company_courses (company_id, course_id) VALUES
+(3, 2),  -- Advanced Shipping Techniques
+(3, 6);  -- E-commerce Shipping Solutions
+
+-- Airspeed International Corporation (company_id = 4)
+INSERT INTO company_courses (company_id, course_id) VALUES
+(4, 3),  -- Warehousing Essentials
+(4, 5);  -- Cold Chain Logistics
+
+-- F2 Logistics Philippines, Inc. (company_id = 5)
+INSERT INTO company_courses (company_id, course_id) VALUES
+(5, 1),  -- Logistics 101
+(5, 4);  -- Customs Procedures
+
+-- Gothong Southern (company_id = 6)
+INSERT INTO company_courses (company_id, course_id) VALUES
+(6, 2),  -- Advanced Shipping Techniques
+(6, 3);  -- Warehousing Essentials
+
+
+INSERT INTO companies (name) VALUES
+('2GO Group, Inc.'),
+('LBC Express, Inc.'),
+('JRS Express'),
+('Airspeed International Corporation'),
+('F2 Logistics Philippines, Inc.'),
+('Gothong Southern');
+
+drop database business_orders_db;
+select * from company_courses;
+select * from companies;
