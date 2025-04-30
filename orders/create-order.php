@@ -21,7 +21,7 @@
         ?>
     </select><br><br>
 
-    <label for="order_details">Order Details</label><br>
+    <label for="order_details">Order Details:</label><br>
     <textarea name="order_details" id="order_details" rows="5" cols="40" required></textarea><br><br>
 
     <button type="submit">Place Order</button>
