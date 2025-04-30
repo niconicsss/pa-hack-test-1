@@ -16,7 +16,7 @@
         <input type="text" name="business" placeholder="Business Name" required><br>
         <input type="number" name="radius" placeholder="Radius (km)" required><br>
         <button type="submit">Register</button>
-        <a href="index.php">Already have an account? Login</a>
+        <a href="login.php">Already have an account? Login</a>
     </form>
 </body>
 </html>
