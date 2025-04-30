@@ -1,3 +1,4 @@
+/* Resetting */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -11,11 +12,41 @@ body {
     padding: 20px;
 }
 
-h2 {
+/* Top Navigation */
+.logout-container {
+    width: 100%;
+    background-color: #7D0A0A;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+}
+
+.logout-container span {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.logout-container a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.logout-container a:hover {
+    color: #BF3131;
+}
+
+/* Headings */
+h1, h2, h3 {
     color: #7D0A0A;
     margin-bottom: 1rem;
 }
 
+/* Form Styles */
 form {
     background-color: #FFFFFF;
     padding: 20px;
@@ -56,6 +87,7 @@ button:hover {
     background-color: #7D0A0A;
 }
 
+/* Links */
 a {
     color: #7D0A0A;
     font-weight: bold;
@@ -68,6 +100,7 @@ a:hover {
     text-decoration: underline;
 }
 
+/* Thread Container */
 .thread {
     background-color: #FFFFFF;
     border: 1px solid #DDD;
@@ -92,7 +125,6 @@ a:hover {
     display: inline;
 }
 
-/* Updated delete button style inside thread */
 .thread form button {
     padding: 1px 4px;
     font-size: 0.7em;
@@ -101,7 +133,6 @@ a:hover {
     border: 1px solid #E74C3C;
     border-radius: 2px;
     font-weight: normal;
-    margin-top: 0;
     margin-left: 8px;
 }
 
@@ -115,6 +146,7 @@ a:hover {
     color: #888;
 }
 
+/* Action Button */
 .action-button {
     display: inline-block;
     padding: 6px 12px;
