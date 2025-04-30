@@ -25,7 +25,7 @@ $orders = $stmt->fetchAll();
 <head>
     <meta charset="UTF-8">
     <title>Track Your Orders</title>
-    <link rel="stylesheet" href="styles/order-status.css">
+    <link rel="stylesheet" href="../styles/order-status.css">
     </head>
 <body>
 
