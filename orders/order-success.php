@@ -6,6 +6,6 @@
 </head>
 <body>
     <h2>Your order has been placed successfully!</h2>
-    <a href="../pages/place_order.php">Place Another Order</a>
+    <a href="place-order.php">➕ Place New Order</a>
 </body>
 </html>
