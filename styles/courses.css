@@ -118,16 +118,20 @@ a.btn:hover {
     background-color: #6D2323;
 }
 
-/* Back Link */
-a[href*="dashboard.php"] {
-    margin-top: 3rem;
+/* Back to Dashboard Button Styled */
+a.back-button {
     display: inline-block;
-    color: #6D2323;
-    font-weight: bold;
+    margin-top: 3rem;
+    padding: 0.6rem 1.2rem;
+    background-color: #BF3131;
+    color: #EEEEEE;
     text-decoration: none;
-    transition: color 0.3s ease;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
-a[href*="dashboard.php"]:hover {
-    color: #A31D1D;
+a.back-button:hover {
+    background-color: #7D0A0A;
+    color: #FFFFFF;
 }
