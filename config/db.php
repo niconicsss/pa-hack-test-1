@@ -1,7 +1,7 @@
 <?php
 $host = 'localhost'; // Database host
-$dbname = ''; // Database name
-$username = ''; // Database username
+$dbname = 'db'; // Database name
+$username = 'root'; // Database username
 $password = ''; // Database password
 
 try {
