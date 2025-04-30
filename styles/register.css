@@ -1,0 +1,79 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #EEEEEE;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #000000; /* Default text color */
+  }
+  
+  .register-container {
+    background-color: #FFFFFF;
+    border: 2px solid #EAD196;
+    border-radius: 10px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 4px 8px rgba(125, 10, 10, 0.2);
+    color: #000000; /* Ensures container text is black */
+  }
+  
+  .register-container h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #000000;
+  }
+  
+  .register-container input[type="text"],
+  .register-container input[type="email"],
+  .register-container input[type="password"] {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1.2rem;
+    border: 1px solid #BF3131;
+    border-radius: 5px;
+    background-color: #FAFAFA;
+    color: #000000; /* Black input text */
+  }
+  
+  .register-container button {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #BF3131;
+    color: #000000; /* Black button text */
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .register-container button:hover {
+    background-color: #7D0A0A;
+    color: #FFFFFF; /* Optional: white text on hover */
+  }
+  
+  .register-container .bottom-link {
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+  }
+  
+  .register-container .bottom-link a {
+    color: #000000;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  
+  .register-container .bottom-link a:hover {
+    color: #BF3131;
+  }
+  
