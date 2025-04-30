@@ -1,28 +1,61 @@
 <?php
-// Include your database connection
-include('../config/db.php');
+require_once '../includes/auth.php';
+require_once '../config/db.php';
 
-// Get the lat and lng from the URL
-$lat = isset($_GET['lat']) ? $_GET['lat'] : null;
-$lng = isset($_GET['lng']) ? $_GET['lng'] : null;
+header('Content-Type: application/json');
 
-// If lat or lng is missing, return an error
+// Validate user session
+$user_id = $_SESSION['user_id'] ?? null;
+if (!$user_id) {
+    echo json_encode(['error' => 'Not authenticated']);
+    exit;
+}
+
+// Get user info
+$sql = "SELECT business, radius FROM users WHERE id = ?";
+$stmt = $pdo->prepare($sql);
+$stmt->execute([$user_id]);
+$user = $stmt->fetch();
+
+if (!$user) {
+    echo json_encode(['error' => 'User not found']);
+    exit;
+}
+
+$category = $user['business'];
+$radius = $user['radius'];
+
+// Validate coordinates
+$lat = $_GET['lat'] ?? null;
+$lng = $_GET['lng'] ?? null;
 if (!$lat || !$lng) {
     echo json_encode(['error' => 'Missing lat/lng']);
     exit;
 }
 
-// Example of a query to fetch businesses within a certain radius
-// Using the Haversine formula to calculate the distance between two latitudes/longitudes
-$sql = "SELECT id, name, address, latitude, longitude, category, 
-                ( 6371 * acos( cos( radians(?) ) * cos( radians(latitude) ) * cos( radians(longitude) - radians(?) ) + sin( radians(?) ) * sin( radians(latitude) ) ) ) AS distance
-        FROM businesses
-        HAVING distance < ?  // Example of radius filter in kilometers
-        ORDER BY distance";
+// Find nearby suppliers using Haversine formula
+$sql = "
+    SELECT id, name, address, latitude, longitude, category,
+        (6371 * ACOS(
+            COS(RADIANS(:lat)) * COS(RADIANS(latitude)) *
+            COS(RADIANS(longitude) - RADIANS(:lng)) +
+            SIN(RADIANS(:lat)) * SIN(RADIANS(latitude))
+        )) AS distance
+    FROM businesses
+    WHERE category = :category
+    HAVING distance <= :radius
+    ORDER BY distance ASC
+";
 
 $stmt = $pdo->prepare($sql);
-$stmt->execute([$lat, $lng, $lat, 10]);  // 10 km radius example
-$businesses = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmt->execute([
+    ':lat' => $lat,
+    ':lng' => $lng,
+    ':category' => $category,
+    ':radius' => $radius
+]);
 
-echo json_encode($businesses);
-?>
+$results = $stmt->fetchAll();
+
+echo json_encode($results);
+exit;
