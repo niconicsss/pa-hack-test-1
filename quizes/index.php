@@ -64,7 +64,7 @@ if (empty($questions)) {
 <html>
 <head>
     <title><?= htmlspecialchars($course['title']) ?> - Quiz</title>
-    <link rel="stylesheet" href="../styles/quiz.css">
+    <link rel="stylesheet" href="../styles/quizzes.css">
 </head>
 <body>
     <h1>📝 Quiz: <?= htmlspecialchars($course['title']) ?></h1>
