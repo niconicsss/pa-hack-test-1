@@ -7,14 +7,18 @@
     <link rel="stylesheet" href="styles/register.css">
 </head>
 <body>
-    <form action="actions/register_action.php" method="POST">
+    <div class="register-container">
         <h2>Register</h2>
-        <input type="text" name="name" placeholder="Full Name (Last Name, First Name, M.I)" required><br>
-        <input type="email" name="email" placeholder="Email" required><br>
-        <input type="password" name="password" placeholder="Password" required><br>
-        <input type="password" name="confirm_password" placeholder="Confirm Password" required><br>
-        <button type="submit">Register</button>
-        <a href="login.php">Already have an account? Login</a>
-     </form>
+        <form action="actions/register_action.php" method="POST">
+            <input type="text" name="name" placeholder="Full Name (Last Name, First Name, M.I)" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+            <button type="submit">Register</button>
+        </form>
+        <div class="bottom-link">
+            <a href="login.php">Already have an account? <strong>Login</strong></a>
+        </div>
+    </div>
 </body>
 </html>
