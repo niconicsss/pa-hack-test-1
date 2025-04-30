@@ -114,3 +114,23 @@ a:hover {
     margin-left: 10px;
     color: #888;
 }
+
+.action-button {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-top: 5px;
+    border: 1px solid #BF3131;
+    background-color: #BF3131;
+    color: #EEEEEE;
+    border-radius: 5px;
+    font-size: 0.9em;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.action-button:hover {
+    background-color: #7D0A0A;
+    color: #FFFFFF;
+}
