@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
+    background-color: #F8F2DE; /* light cream background */
     padding: 40px;
     margin: 0;
     color: #333;
@@ -8,14 +8,14 @@ body {
 
 h2 {
     font-size: 2rem;
-    color: #2c3e50;
+    color: #A31D1D; /* deep red heading */
     margin-bottom: 30px;
     text-align: center;
 }
 
 .order-card {
     background-color: #ffffff;
-    border: 1px solid #ddd;
+    border: 1px solid #ECDCBF; /* soft beige border */
     border-radius: 8px;
     padding: 20px;
     margin-bottom: 20px;
@@ -29,7 +29,7 @@ h2 {
 
 .order-card h3 {
     margin: 0 0 10px;
-    color: #007BFF;
+    color: #D84040; /* strong red for subheading */
     font-size: 1.2rem;
 }
 
@@ -39,15 +39,15 @@ h2 {
 }
 
 small {
-    color: #888;
+    color: #A31D1D; /* deep red for small text */
 }
 
 a {
     display: inline-block;
     margin-right: 15px;
     padding: 10px 16px;
-    background-color: #007BFF;
-    color: #fff;
+    background-color: #D84040; /* primary red button */
+    color: #F8F2DE; /* light cream text for contrast */
     text-decoration: none;
     border-radius: 6px;
     font-size: 0.95rem;
@@ -55,9 +55,9 @@ a {
 }
 
 a:hover {
-    background-color: #0056b3;
+    background-color: #A31D1D; /* darker red on hover */
 }
 
 a:active {
-    background-color: #004080;
+    background-color: #333; /* deep gray for click */
 }
