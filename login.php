@@ -7,12 +7,20 @@
     <link rel="stylesheet" href="styles/login.css">
 </head>
 <body>
-    <form class="login-form" action="actions/login_action.php" method="POST">
+    <div class="login-container">
         <h2>Login</h2>
-        <input type="email" name="email" placeholder="Email" required><br>
-        <input type="password" name="password" placeholder="Password" required><br>
-        <button type="submit">Login</button>
-        <a href="register.php">Create an account</a>
-     </form>
+        <form action="actions/login_action.php" method="POST">
+            <label for="email">Email</label>
+            <input type="email" name="email" placeholder="Email" required>
+
+            <label for="password">Password</label>
+            <input type="password" name="password" placeholder="Password" required>
+
+            <button type="submit">Login</button>
+        </form>
+        <div class="bottom-link">
+            <a href="register.php">Create an account</a>
+        </div>
+    </div>
 </body>
 </html>
