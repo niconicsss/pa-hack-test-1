@@ -1,12 +1,12 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #F8F2DE; /* light cream background */
+  background-color: #F8F2DE;
   padding: 20px;
   margin: 0;
 }
 
 h1, h2 {
-  color: #A31D1D; /* deep red for headings */
+  color: #A31D1D;
 }
 
 h1 {
@@ -21,15 +21,15 @@ h2 {
 
 p {
   font-size: 1rem;
-  color: #333; /* dark gray for better readability */
+  color: #333;
   margin-bottom: 20px;
 }
 
 a {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #D84040; /* bright red for primary button */
-  color: #F8F2DE; /* light text for contrast */
+  background-color: #D84040;
+  color: #F8F2DE;
   text-decoration: none;
   border-radius: 5px;
   margin-bottom: 10px;
@@ -38,18 +38,17 @@ a {
 }
 
 a:hover {
-  background-color: #A31D1D; /* deep red on hover */
+  background-color: #A31D1D;
 }
 
 a:active {
-  background-color: #333; /* fallback deep color on click */
+  background-color: #333;
 }
 
 a + a {
   margin-left: 10px;
 }
 
-/* 🔐 Logout Button - Top Right Corner */
 .logout-container {
   position: absolute;
   top: 20px;
