@@ -8,9 +8,12 @@ CREATE TABLE users (
     email VARCHAR(255) UNIQUE NOT NULL,
     password_hash VARCHAR(255) NOT NULL,
     role ENUM('learner', 'admin') DEFAULT 'learner',
+    company_id INT,  -- NEW: Associate user with company
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (company_id) REFERENCES companies(id) ON DELETE SET NULL
 );
+
 CREATE TABLE courses (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
@@ -82,7 +85,6 @@ CREATE TABLE forum_replies (
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
-
 CREATE TABLE companies (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL UNIQUE
@@ -146,6 +148,16 @@ INSERT INTO companies (name) VALUES
 ('F2 Logistics Philippines, Inc.'),
 ('Gothong Southern');
 
-drop database business_orders_db;
-select * from company_courses;
+INSERT INTO companies (name, email_domain) VALUES
+('2GO Group, Inc.', '2go.com'),
+('LBC Express, Inc.', 'lbc.com'),
+('JRS Express', 'jrs.com'),
+('Airspeed International Corporation', 'air.ph'),
+('F2 Logistics Philippines, Inc.', 'f2.com'),
+('Gothong Southern', 'gothong.com');
+
+
+drop table companies;
+drop database digital_training;
+select * from users;
 select * from companies;

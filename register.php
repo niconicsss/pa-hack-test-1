@@ -1,4 +1,5 @@
 <?php include 'config/db.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,9 +12,25 @@
         <h2>Register</h2>
         <form action="actions/register_action.php" method="POST">
             <input type="text" name="name" placeholder="Full Name (Last Name, First Name, M.I)" required>
-            <input type="email" name="email" placeholder="Email" required>
+
+            <!-- Only company email field -->
+            <input type="email" name="company_email" placeholder="Your Company Email (e.g., user@company.com)" required>
+
             <input type="password" name="password" placeholder="Password" required>
             <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+
+             <!-- Dropdown for selecting company -->
+             <label for="company_id">Select your Company</label>
+                <select name="company_id" id="company_id" required>
+                <option value="">-- Select Company --</option>
+                <?php
+                $stmt = $pdo->query("SELECT id, name FROM companies ORDER BY name ASC");
+                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    echo "<option value='" . htmlspecialchars($row['id']) . "'>" . htmlspecialchars($row['name']) . "</option>";
+                }
+                ?>
+            </select>
+
             <button type="submit">Register</button>
         </form>
         <div class="bottom-link">

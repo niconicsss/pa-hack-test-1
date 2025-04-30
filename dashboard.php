@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['user_id'])) {
-    header('Location: index.php');
+    header('Location: login.php');
     exit;
 }
 
@@ -36,7 +36,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
     <!-- Top Bar -->
     <div class="logout-container">
         <span>Welcome, <?php echo htmlspecialchars($user['name']); ?></span>
-        <a href="logout.php">🚪 Logout</a>
+        <a href="login.php">🚪 Logout</a>
     </div>
 
     <h1>📦 Skill Cargo </h1>
