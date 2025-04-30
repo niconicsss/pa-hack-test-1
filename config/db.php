@@ -1,8 +1,8 @@
 <?php
 $host = 'localhost';      // Database host
-$dbname = 'your_db_name'; // Database name
-$username = 'your_username'; // Database username
-$password = 'your_password'; // Database password
+$dbname = 'business_orders_db'; // Database name
+$username = 'root'; // Database username
+$password = 'root'; // Database password
 
 try {
     // Create PDO connection
