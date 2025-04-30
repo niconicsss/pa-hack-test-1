@@ -1,96 +1,116 @@
 <?php
-require '../includes/auth.php';
-require '../config/db.php';
-$userId = $_SESSION['user_id'] ?? 0;
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header('Location: index.php'); // Redirect if not logged in
+    exit;
+}
 
-$stmt = $pdo->prepare("SELECT * FROM users WHERE id = ?");
-$stmt->execute([$userId]);
-$user = $stmt->fetch();
+include('../config/db.php');
 
-$category = $user['business'];
-$radius = $user['radius'];
+// Get available business categories (You can customize this list)
+$categories = ['Water Supply Store', 'Laundry', 'Restaurant']; // Add more categories as needed
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Nearby Businesses</title>
-    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
-    <style>
-        #map {
-            width: 100%;
-            height: 500px;
-        }
-    </style>
+    <title>Search Nearby Businesses</title>
+    <link rel="stylesheet" href="styles/list.css">
 </head>
-<body class="container mt-4">
+<body>
 
-    <h2>Nearby Suppliers (<?= htmlspecialchars($category) ?>)</h2>
-    <div id="map"></div>
-    <div id="businessList" class="row mt-4"></div>
+    <h1>Search Nearby Businesses</h1>
+
+    <!-- Form to choose category -->
+    <form method="GET" action="list.php">
+        <label for="category">Select Business Type:</label>
+        <select name="category" id="category" required>
+            <option value="">-- Choose --</option>
+            <?php foreach ($categories as $cat): ?>
+                <option value="<?= htmlspecialchars($cat) ?>" <?= isset($_GET['category']) && $_GET['category'] === $cat ? 'selected' : '' ?>><?= htmlspecialchars($cat) ?></option>
+            <?php endforeach; ?>
+        </select>
+        <button type="submit">Search</button>
+    </form>
+
+    <!-- Display user's current location (optional, just for verification) -->
+    <div id="location-info">
+        <p>Getting your location...</p>
+    </div>
+
+    <!-- Button to trigger geolocation -->
+    <button onclick="getUserLocation()">Use My Location</button>
+
+    <!-- Display businesses -->
+    <h2>Nearby Businesses</h2>
+    <div id="business-results">
+        <!-- Businesses will be displayed here -->
+    </div>
 
     <script>
-        const category = "<?= $category ?>";
-        const radius = <?= $radius ?>;
-        let userLat = null;
-        let userLng = null;
+    // Function to get user's geolocation and send it to the server using AJAX
+    function getUserLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var userLat = position.coords.latitude;
+                var userLon = position.coords.longitude;
+                
+                // Display the coordinates (optional)
+                document.getElementById('location-info').innerHTML = 
+                    `<p>Your Location: ${userLat}, ${userLon}</p>`;
+                
+                // Get the selected category from the form
+                var category = document.getElementById('category').value;
 
-        function initMap() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(pos => {
-                    userLat = pos.coords.latitude;
-                    userLng = pos.coords.longitude;
+                // Make the AJAX request to fetch nearby businesses
+                fetchNearbyBusinesses(userLat, userLon, category);
+            }, function(error) {
+                console.error("Geolocation error: " + error.message);
+                alert("Unable to retrieve your location.");
+            });
+        } else {
+            alert("Geolocation is not supported by this browser.");
+        }
+    }
 
-                    const userLocation = { lat: userLat, lng: userLng };
-                    const map = new google.maps.Map(document.getElementById("map"), {
-                        zoom: 13,
-                        center: userLocation
-                    });
+    // Function to fetch nearby businesses from the PHP backend
+    function fetchNearbyBusinesses(userLat, userLon, category) {
+        fetch('actions/nearby_businesses.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `latitude=${userLat}&longitude=${userLon}&category=${category}`
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Clear previous results
+            var resultsContainer = document.getElementById('business-results');
+            resultsContainer.innerHTML = ''; 
 
-                    new google.maps.Marker({
-                        position: userLocation,
-                        map,
-                        title: "You are here",
-                        icon: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
-                    });
+            if (data.length > 0) {
+                // Loop through businesses and display them
+                data.forEach(business => {
+                    var businessElement = document.createElement('div');
+                    businessElement.classList.add('business');
 
-                    fetch(`/business/search.php?lat=${userLat}&lng=${userLng}&category=${category}&radius=${radius}`)
-                        .then(res => res.json())
-                        .then(data => {
-                            if (Array.isArray(data)) {
-                                data.forEach(business => {
-                                    const position = { lat: parseFloat(business.latitude), lng: parseFloat(business.longitude) };
-
-                                    new google.maps.Marker({
-                                        position,
-                                        map,
-                                        title: business.name
-                                    });
-
-                                    document.getElementById("businessList").innerHTML += `
-                                        <div class="col-md-4">
-                                            <div class="card mb-3">
-                                                <div class="card-body">
-                                                    <h5>${business.name}</h5>
-                                                    <p>${business.address}</p>
-                                                    <p class="text-muted">${business.distance.toFixed(2)} km away</p>
-                                                    <a href="/orders/create.php?business_id=${business.id}" class="btn btn-sm btn-primary">Order</a>
-                                                </div>
-                                            </div>
-                                        </div>`;
-                                });
-                            } else {
-                                alert("No nearby businesses found.");
-                            }
-                        });
-                }, () => {
-                    alert("Geolocation failed.");
+                    businessElement.innerHTML = `
+                        <h3>${business.name}</h3>
+                        <p>Category: ${business.category}</p>
+                        <p>Distance: ${business.distance.toFixed(2)} km</p>
+                        <p>Address: ${business.address}</p>
+                    `;
+                    
+                    resultsContainer.appendChild(businessElement);
                 });
             } else {
-                alert("Geolocation not supported.");
+                resultsContainer.innerHTML = "<p>No businesses found in this category within your radius.</p>";
             }
-        }
+        })
+        .catch(error => console.error('Error fetching nearby businesses:', error));
+    }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_REAL_API_KEY&callback=initMap" async defer></script>
+
 </body>
 </html>
