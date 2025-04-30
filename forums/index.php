@@ -1,56 +1,56 @@
 <?php
-// Start session if not already started
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
+session_start();
+require_once '../config/db.php'; // DB connection
+
+// Check if user is logged in
+if (!isset($_SESSION['user_id'])) {
+    header('Location: ../login.php');
+    exit;
 }
 
-// Define root path
-define('ROOT_PATH', dirname(__DIR__));
+$userId = $_SESSION['user_id'];
 
-// Include shared layout files
-include ROOT_PATH . '/views/shared/header.php';
+// Handle new thread submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['title'], $_POST['content'])) {
+    $title = trim($_POST['title']);
+    $content = trim($_POST['content']);
+    if ($title && $content) {
+        $stmt = $pdo->prepare("INSERT INTO forum_threads (user_id, title, content) VALUES (?, ?, ?)");
+        $stmt->execute([$userId, $title, $content]);
+        header('Location: index.php');
+        exit;
+    }
+}
 
-// Assuming $threads is already passed from controller
+// Fetch threads
+$threads = $pdo->query("SELECT forum_threads.*, users.name FROM forum_threads 
+                        JOIN users ON forum_threads.user_id = users.id 
+                        ORDER BY forum_threads.created_at DESC")->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
     <title>Community Forum</title>
-    <link rel="stylesheet" href="/public/css/forum.css">
 </head>
 <body>
-
-<div class="forum-container">
     <h1>Community Forum</h1>
+    <p>Connect with fellow workers, ask questions, and share logistics tips.</p>
 
-    <div>
-        <a href="/forum/new" class="btn btn-primary">+ Start New Thread</a>
-    </div>
+    <h2>Start a New Thread</h2>
+    <form method="POST">
+        <input type="text" name="title" placeholder="Thread title" required><br>
+        <textarea name="content" placeholder="What's on your mind?" required></textarea><br>
+        <button type="submit">Post Thread</button>
+    </form>
 
-    <?php if (!empty($threads)): ?>
-        <?php foreach ($threads as $thread): ?>
-            <div class="thread-preview">
-                <h3>
-                    <a href="/forum/thread/<?php echo $thread['id']; ?>">
-                        <?php echo htmlspecialchars($thread['title']); ?>
-                    </a>
-                </h3>
-                <p>
-                    Posted by User #<?php echo $thread['user_id']; ?>
-                    on <?php echo date('F j, Y, g:i a', strtotime($thread['created_at'])); ?>
-                </p>
-            </div>
-        <?php endforeach; ?>
-    <?php else: ?>
-        <p>No threads yet. <a href="/forum/new">Start one now</a>!</p>
-    <?php endif; ?>
-</div>
-
+    <h2>Recent Discussions</h2>
+    <?php foreach ($threads as $thread): ?>
+        <div style="border:1px solid #ccc; margin-bottom:10px; padding:10px;">
+            <h3><a href="thread.php?id=<?= $thread['id'] ?>"><?= htmlspecialchars($thread['title']) ?></a></h3>
+            <p><?= nl2br(htmlspecialchars(substr($thread['content'], 0, 150))) ?>...</p>
+            <small>Posted by <?= htmlspecialchars($thread['name']) ?> on <?= $thread['created_at'] ?></small>
+        </div>
+    <?php endforeach; ?>
 </body>
 </html>
-
-<?php
-include ROOT_PATH . '/views/shared/footer.php';
-?>
