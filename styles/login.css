@@ -11,7 +11,7 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    color: #000000; /* default font color */
+    color: #000000; 
   }
   
   .login-container {
