@@ -9,9 +9,8 @@
 
 <h2>Place an Order</h2>
 <form action="../actions/place_order.php" method="POST">
-    <label for="business_id">Business</label>
-    <select name="business_id" required>
-        <!-- Example: Populate from DB -->
+    <label for="business_id">Business</label><br>
+    <select name="business_id" id="business_id" required>
         <?php
         include('../config/db.php');
         $sql = "SELECT * FROM businesses";
@@ -20,10 +19,10 @@
             echo "<option value='" . $business['id'] . "'>" . htmlspecialchars($business['name']) . "</option>";
         }
         ?>
-    </select>
+    </select><br><br>
 
-    <label for="order_details">Order Details</label>
-    <textarea name="order_details" required></textarea>
+    <label for="order_details">Order Details</label><br>
+    <textarea name="order_details" id="order_details" rows="5" cols="40" required></textarea><br><br>
 
     <button type="submit">Place Order</button>
 </form>
