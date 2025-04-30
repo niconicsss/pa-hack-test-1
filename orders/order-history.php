@@ -56,7 +56,7 @@ $orders = $stmt->fetchAll();
 <?php endif; ?>
 
 <p>
-    <a href="place-order.php">➕ Place New Order</a> |
+    <a href="place-order.php">➕ Place New Order</a>
     <a href="order-success.php">✅ View Order Success Page</a>
 </p>
 
