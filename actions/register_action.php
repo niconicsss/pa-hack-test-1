@@ -22,4 +22,4 @@ try {
 } catch (PDOException $e) {
     echo "Registration failed: " . $e->getMessage();
 }
-?>
+ ?>
