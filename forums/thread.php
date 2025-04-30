@@ -108,11 +108,11 @@ if ($editingReplyId && $userId) {
             <?php if ($userId && $reply['user_id'] == $userId): ?>
                 <form method="POST" style="display:inline;" onsubmit="return confirm('Delete this reply?');">
                     <input type="hidden" name="delete_reply_id" value="<?= $reply['id'] ?>">
-                    <button type="submit" style="color:red;">Delete</button>
+                    <button type="submit">Delete</button>
                 </form>
                 <a href="thread.php?id=<?= $threadId ?>&edit_reply=<?= $reply['id'] ?>" style="margin-left:10px;">Edit</a>
             <?php endif; ?>
-        </div>
+        </div>  
     <?php endforeach; ?>
 
     <?php if ($userId): ?>

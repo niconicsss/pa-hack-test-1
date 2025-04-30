@@ -75,7 +75,7 @@ $threads = $pdo->query("SELECT forum_threads.*, users.name FROM forum_threads
 <html>
 <head>
     <title>Forum</title>
-    <link rel="stylesheet" href="../styles/index.css">
+    <link rel="stylesheet" href="../styles/forums.css">
 </head>
 <body>
 
