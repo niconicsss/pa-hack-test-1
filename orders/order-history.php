@@ -29,7 +29,7 @@ $orders = $stmt->fetchAll();
 </head>
 <body>
     
-    <h1>Your Orders</h1>
+    <h1>View Your Orders</h1>
 
 <?php if (count($orders) > 0): ?>
     <?php foreach ($orders as $order): ?>
