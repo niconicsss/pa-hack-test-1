@@ -5,29 +5,36 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-require '../config/db.php';  // Database connection
+require '../config/db.php';
 
 $user_id = $_SESSION['user_id'];
 
-// Fetch companies from the database
-$stmt = $pdo->query("SELECT id, name FROM companies");
-$companies = $stmt->fetchAll(PDO::FETCH_ASSOC);
+// Fetch the user's company ID
+$stmt = $pdo->prepare("SELECT company_id FROM users WHERE id = ?");
+$stmt->execute([$user_id]);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-// Set the default company to 'Gothong Southern' (company_id = 6)
-$selected_company = isset($_GET['company']) ? (int) $_GET['company'] : 6; // Default to company_id = 6
-
-// Fetch courses based on selected company, or all companies if no company is selected
-if ($selected_company > 0) {
-    $stmt = $pdo->prepare("
-        SELECT c.* 
-        FROM courses c
-        JOIN company_courses cc ON c.id = cc.course_id
-        WHERE cc.company_id = ?
-    ");
-    $stmt->execute([$selected_company]);
-} else {
-    $stmt = $pdo->query("SELECT * FROM courses");
+if (!$user) {
+    echo "User not found.";
+    exit;
 }
+
+$company_id = $user['company_id'];
+
+// Fetch the user's company name
+$stmt = $pdo->prepare("SELECT name FROM companies WHERE id = ?");
+$stmt->execute([$company_id]);
+$company = $stmt->fetch(PDO::FETCH_ASSOC);
+$company_name = $company['name'] ?? 'Unknown Company';
+
+// Fetch courses available to the user's company
+$stmt = $pdo->prepare("
+    SELECT c.*
+    FROM courses c
+    INNER JOIN company_courses cc ON c.id = cc.course_id
+    WHERE cc.company_id = ?
+");
+$stmt->execute([$company_id]);
 $courses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Fetch user's course progress
@@ -35,7 +42,6 @@ $progress_stmt = $pdo->prepare("SELECT course_id, status FROM progress WHERE use
 $progress_stmt->execute([$user_id]);
 $progress_data = $progress_stmt->fetchAll(PDO::FETCH_KEY_PAIR);
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,24 +51,12 @@ $progress_data = $progress_stmt->fetchAll(PDO::FETCH_KEY_PAIR);
 </head>
 <body>
     <h1>📚 Course Library</h1>
-    <p>Learn essential digital tools and logistics practices to stay competitive in the industry.</p>
-
-    <!-- Dropdown to select company -->
-    <form method="GET">
-        <label for="company">Choose a Company:</label>
-        <select name="company" id="company" onchange="this.form.submit()">
-            <option value="">-- All Companies --</option>
-            <?php foreach ($companies as $company): ?>
-                <option value="<?= $company['id'] ?>" <?= $selected_company === (int) $company['id'] ? 'selected' : '' ?>>
-                    <?= htmlspecialchars($company['name']) ?>
-                </option>
-            <?php endforeach; ?>
-        </select>
-    </form>
+    <p>Welcome! Below are your training courses for:</p>
+    <h2 style="color: #333"><?= htmlspecialchars($company_name) ?></h2>
 
     <div class="course-list">
         <?php if (empty($courses)): ?>
-            <p>No courses found for the selected company.</p>
+            <p>No courses assigned to your company yet.</p>
         <?php else: ?>
             <ul>
                 <?php foreach ($courses as $course): ?>
@@ -70,9 +64,7 @@ $progress_data = $progress_stmt->fetchAll(PDO::FETCH_KEY_PAIR);
                         <h2><?= htmlspecialchars($course['title']) ?></h2>
                         <p><?= htmlspecialchars($course['description']) ?></p>
                         <p><strong>Level:</strong> <?= ucfirst($course['level']) ?></p>
-                        <p><strong>Status:</strong>
-                            <?= htmlspecialchars($progress_data[$course['id']] ?? 'Not Started') ?>
-                        </p>
+                        <p><strong>Status:</strong> <?= htmlspecialchars($progress_data[$course['id']] ?? 'Not Started') ?></p>
                         <a class="btn" href="view.php?id=<?= $course['id'] ?>">Start Learning ➜</a>
                     </li>
                 <?php endforeach; ?>
