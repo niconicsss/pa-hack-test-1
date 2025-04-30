@@ -1,23 +1,14 @@
-<?php include('includes/auth.php'); ?>
-
+<?php include 'config/db.php'; ?>
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-</head>
+<html>
+<head><title>Login</title></head>
 <body>
-
-    <h2>Login</h2>
-    <form action="actions/login_action.php" method="POST">
-        <label for="email">Email</label>
-        <input type="email" name="email" required>
-
-        <label for="password">Password</label>
-        <input type="password" name="password" required>
-
-        <button type="submit">Login</button>
-    </form>
-
+<h2>Login</h2>
+<form action="actions/login_action.php" method="POST">
+    <input type="email" name="email" placeholder="Email" required><br>
+    <input type="password" name="password" placeholder="Password" required><br>
+    <button type="submit">Login</button>
+</form>
+<a href="register.php">Create an account</a>
 </body>
 </html>

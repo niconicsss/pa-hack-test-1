@@ -1,19 +1,17 @@
 <?php
-include('../config/db.php');
+require '../config/db.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Hash password
-    $business = $_POST['business'];
-    $radius = $_POST['radius'];
+$name = $_POST['name'];
+$email = $_POST['email'];
+$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+$business = $_POST['business'];
+$radius = (int)$_POST['radius'];
 
-    // Prepare the SQL query
-    $sql = "INSERT INTO users (name, email, password, business, radius) VALUES (?, ?, ?, ?, ?)";
-    $stmt = $pdo->prepare($sql);
+try {
+    $stmt = $pdo->prepare("INSERT INTO users (name, email, password, business, radius) VALUES (?, ?, ?, ?, ?)");
     $stmt->execute([$name, $email, $password, $business, $radius]);
-
-    // Redirect to login page
-    header('Location: ../login.php');
+    header("Location: ../index.php?registered=1");
+} catch (PDOException $e) {
+    echo "Registration failed: " . $e->getMessage();
 }
 ?>
