@@ -156,6 +156,55 @@ INSERT INTO companies (name, email_domain) VALUES
 ('F2 Logistics Philippines, Inc.', 'f2.com'),
 ('Gothong Southern', 'gothong.com');
 
+-- questions--
+INSERT INTO quizzes (course_id, question, option_1, option_2, option_3, option_4, correct_option) 
+VALUES
+(1, 'What is the primary goal of logistics?', 'Efficient product delivery', 'Minimizing production cost', 'Maximizing stock levels', 'Reducing employee numbers', 1),
+(1, 'Which of the following is a key function of logistics?', 'Handling customer complaints', 'Managing transportation and storage of goods', 'Marketing products', 'Manufacturing products', 2),
+(1, 'What does "supply chain" refer to?', 'A network of organizations involved in the production and delivery of goods', 'A marketing strategy', 'A method of customer service', 'A logistics cost strategy', 1),
+(1, 'Which of the following is NOT part of the logistics process?', 'Production', 'Inventory management', 'Warehousing', 'Transportation', 1),
+(1, 'What is the term for the flow of goods from the point of origin to the final customer?', 'Logistics', 'Production', 'Reverse logistics', 'Inventory management', 1);
+
+INSERT INTO quizzes (course_id, question, option_1, option_2, option_3, option_4, correct_option) 
+VALUES
+(2, 'What is a key challenge in advanced shipping techniques?', 'Cost reduction in production', 'Timely and efficient delivery', 'Finding warehouse space', 'Marketing strategies for logistics', 2),
+(2, 'Which shipping method is most suitable for perishable goods?', 'Air freight', 'Ground transport', 'Ocean freight', 'Rail transport', 1),
+(2, 'What does "shipping lane" refer to?', 'The path taken by trucks within a warehouse', 'A specific route used by ships for international trade', 'The location where goods are stored', 'A guideline for efficient logistics', 2),
+(2, 'What is a major factor in choosing a shipping method?', 'The distance to the destination', 'The type of product being shipped', 'The size of the shipment', 'All of the above', 4),
+(2, 'Which shipping term refers to the cost of shipping goods from one location to another?', 'Freight charge', 'Tariff', 'Customs fee', 'Handling fee', 1);
+
+INSERT INTO quizzes (course_id, question, option_1, option_2, option_3, option_4, correct_option) 
+VALUES
+(3, 'What is the main purpose of a warehouse?', 'To store inventory until it is needed for production or distribution', 'To handle customer service calls', 'To create promotional materials', 'To manage marketing campaigns', 1),
+(3, 'Which of the following is an essential component of warehouse management?', 'Understanding customer demographics', 'Inventory control and management', 'Managing employee vacations', 'Writing product descriptions', 2),
+(3, 'What does "FIFO" stand for in warehouse management?', 'First In, First Out', 'Fully Integrated Freight Operations', 'Fully Independent Freight Organization', 'First In, Fully Out', 1),
+(3, 'What is the process of organizing inventory to ensure easy access called?', 'Inventory rotation', 'Stock taking', 'Picking', 'Warehousing', 3),
+(3, 'What type of warehouse is most suitable for high-demand, low-cost items?', 'Automated warehouse', 'Manual warehouse', 'Distribution center', 'Cold storage warehouse', 3);
+
+INSERT INTO quizzes (course_id, question, option_1, option_2, option_3, option_4, correct_option) 
+VALUES
+(4, 'What is the primary function of customs procedures?', 'To inspect goods for quality', 'To ensure that goods are taxed properly when crossing borders', 'To store products in warehouses', 'To handle product marketing', 2),
+(4, 'Which document is required for international shipping?', 'Sales receipt', 'Commercial invoice', 'Marketing flyer', 'Warehouse inventory', 2),
+(4, 'What does "tariff" refer to in customs?', 'A shipping method', 'A fee imposed on goods crossing borders', 'A warehouse storage cost', 'A type of packaging', 2),
+(4, 'Which of the following is required for importation?', 'Customs declaration', 'Product catalog', 'Employee list', 'Business cards', 1),
+(4, 'What does "import quota" refer to?', 'The maximum amount of goods that can be imported', 'The minimum cost of shipping', 'The total number of items in a warehouse', 'The price of international goods', 1);
+
+INSERT INTO quizzes (course_id, question, option_1, option_2, option_3, option_4, correct_option) 
+VALUES
+(5, 'What is cold chain logistics used for?', 'Storing frozen foods only', 'Maintaining the temperature of perishable goods throughout transportation', 'Managing inventory in warehouses', 'Creating promotional materials for products', 2),
+(5, 'What is a key consideration in cold chain logistics?', 'Temperature control during transit', 'Product branding', 'Marketing of frozen goods', 'Optimizing shipping routes', 1),
+(5, 'What is the consequence of breaking the cold chain during transportation?', 'Faster delivery time', 'Increased customer satisfaction', 'Spoilage of perishable goods', 'Lower transportation costs', 3),
+(5, 'Which technology is most important in cold chain logistics?', 'GPS tracking', 'Temperature sensors', 'Radio frequency identification (RFID)', 'Warehouse management systems', 2),
+(5, 'What is the main challenge of cold chain logistics?', 'Expensive packaging', 'Temperature fluctuations during transportation', 'Long delivery times', 'Lack of transportation vehicles', 2);
+
+INSERT INTO quizzes (course_id, question, option_1, option_2, option_3, option_4, correct_option) 
+VALUES
+(6, 'What is one key challenge in e-commerce shipping?', 'Managing customer complaints', 'Timely and cost-efficient delivery', 'Handling warehouse staffing', 'Managing online orders', 2),
+(6, 'Which shipping method is commonly used in e-commerce for small packages?', 'Ocean freight', 'Air freight', 'Parcel delivery services (e.g., UPS, FedEx)', 'Rail transport', 3),
+(6, 'How can e-commerce businesses reduce shipping costs?', 'By using a single carrier for all shipments', 'By increasing the size of orders', 'By using ground transportation for faster deliveries', 'By optimizing packaging to reduce weight and size', 4),
+(6, 'What does "last mile delivery" refer to?', 'The first step in shipping', 'The final step in delivering goods to customers', 'The middle stage of shipping', 'The process of storing goods in warehouses', 2),
+(6, 'Which of the following is NOT a benefit of e-commerce shipping solutions?', 'Faster delivery times', 'Lower shipping costs', 'Better customer service', 'Limited delivery options', 4);
+
 
 drop table companies;
 drop database digital_training;
