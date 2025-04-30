@@ -85,6 +85,9 @@ $threads = $pdo->query("SELECT forum_threads.*, users.name FROM forum_threads
     </a>
 </div>
 
+<h1>👥 Community Forum</h1>
+    <p>Connect with fellow workers, ask questions, and share logistics tips.</p>
+
 <h2><?= $editThread ? 'Edit Thread' : 'Start a New Thread' ?></h2>
 <form method="POST">
     <?php if ($editThread): ?>
