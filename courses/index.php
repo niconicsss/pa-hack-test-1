@@ -50,6 +50,11 @@ $progress_data = $progress_stmt->fetchAll(PDO::FETCH_KEY_PAIR);
     <link rel="stylesheet" href="../styles/courses.css">
 </head>
 <body>
+
+<div class="top-right-link">
+    <a href="../dashboard.php">← Back to Dashboard</a>
+</div>
+
     <h1>📚 Course Library</h1>
     <p>Welcome! Below are your training courses for:</p>
     <h2 style="color: #333"><?= htmlspecialchars($company_name) ?></h2>
@@ -70,8 +75,5 @@ $progress_data = $progress_stmt->fetchAll(PDO::FETCH_KEY_PAIR);
                 <?php endforeach; ?>
             </ul>
         <?php endif; ?>
-    </div>
-
-    <p><a href="../dashboard.php">← Back to Dashboard</a></p>
 </body>
 </html>
