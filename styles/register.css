@@ -11,18 +11,18 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    color: #000000; /* Default text color */
+    color: #000000; 
   }
   
   .register-container {
     background-color: #FFFFFF;
-    border: 2px solid #EAD196;
+    border: 2px solid #FFFFFF;
     border-radius: 10px;
     padding: 2rem;
     width: 100%;
     max-width: 450px;
     box-shadow: 0 4px 8px rgba(125, 10, 10, 0.2);
-    color: #000000; /* Ensures container text is black */
+    color: #000000; 
   }
   
   .register-container h2 {
@@ -57,7 +57,7 @@
   
   .register-container button:hover {
     background-color: #7D0A0A;
-    color: #FFFFFF; /* Optional: white text on hover */
+    color: #7D0A0A; 
   }
   
   .register-container .bottom-link {
