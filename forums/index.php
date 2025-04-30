@@ -9,11 +9,12 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 $userId = $_SESSION['user_id'];
+$editThread = null;
 
-// Handle new thread submission
+// Handle form submissions
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // New thread
-    if (isset($_POST['title'], $_POST['content'])) {
+    if (isset($_POST['title'], $_POST['content']) && empty($_POST['thread_id'])) {
         $title = trim($_POST['title']);
         $content = trim($_POST['content']);
         if ($title && $content) {
@@ -24,11 +25,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
+    // Edit thread
+    if (isset($_POST['thread_id'], $_POST['title'], $_POST['content'])) {
+        $threadId = $_POST['thread_id'];
+        $stmt = $pdo->prepare("SELECT * FROM forum_threads WHERE id = ? AND user_id = ?");
+        $stmt->execute([$threadId, $userId]);
+        $thread = $stmt->fetch();
+
+        if ($thread) {
+            $stmt = $pdo->prepare("UPDATE forum_threads SET title = ?, content = ? WHERE id = ?");
+            $stmt->execute([trim($_POST['title']), trim($_POST['content']), $threadId]);
+        }
+
+        header('Location: index.php');
+        exit;
+    }
+
     // Delete thread
     if (isset($_POST['delete_thread_id'])) {
         $threadId = $_POST['delete_thread_id'];
-
-        // Check ownership
         $stmt = $pdo->prepare("SELECT * FROM forum_threads WHERE id = ? AND user_id = ?");
         $stmt->execute([$threadId, $userId]);
         $thread = $stmt->fetch();
@@ -36,12 +51,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($thread) {
             $stmt = $pdo->prepare("DELETE FROM forum_threads WHERE id = ?");
             $stmt->execute([$threadId]);
-            // Optional: delete associated replies if needed
         }
 
         header('Location: index.php');
         exit;
     }
+}
+
+// Handle edit request (via GET)
+if (isset($_GET['edit']) && is_numeric($_GET['edit'])) {
+    $stmt = $pdo->prepare("SELECT * FROM forum_threads WHERE id = ? AND user_id = ?");
+    $stmt->execute([$_GET['edit'], $userId]);
+    $editThread = $stmt->fetch();
 }
 
 // Fetch threads
@@ -57,11 +78,17 @@ $threads = $pdo->query("SELECT forum_threads.*, users.name FROM forum_threads
 </head>
 <body>
 
-<h2>Start a New Thread</h2>
+<h2><?= $editThread ? 'Edit Thread' : 'Start a New Thread' ?></h2>
 <form method="POST">
-    <input type="text" name="title" placeholder="Thread title" required><br>
-    <textarea name="content" placeholder="What's on your mind?" required></textarea><br>
-    <button type="submit">Post Thread</button>
+    <?php if ($editThread): ?>
+        <input type="hidden" name="thread_id" value="<?= $editThread['id'] ?>">
+    <?php endif; ?>
+    <input type="text" name="title" placeholder="Thread title" required value="<?= $editThread ? htmlspecialchars($editThread['title']) : '' ?>"><br>
+    <textarea name="content" placeholder="What's on your mind?" required><?= $editThread ? htmlspecialchars($editThread['content']) : '' ?></textarea><br>
+    <button type="submit"><?= $editThread ? 'Update Thread' : 'Post Thread' ?></button>
+    <?php if ($editThread): ?>
+        <a href="index.php">Cancel</a>
+    <?php endif; ?>
 </form>
 
 <h2>Recent Discussions</h2>
@@ -72,10 +99,11 @@ $threads = $pdo->query("SELECT forum_threads.*, users.name FROM forum_threads
         <small>Posted by <?= htmlspecialchars($thread['name']) ?> on <?= $thread['created_at'] ?></small>
 
         <?php if ($thread['user_id'] == $userId): ?>
-            <form method="POST" onsubmit="return confirm('Are you sure you want to delete this thread?');" style="margin-top:5px;">
+            <form method="POST" onsubmit="return confirm('Are you sure you want to delete this thread?');" style="margin-top:5px; display:inline;">
                 <input type="hidden" name="delete_thread_id" value="<?= $thread['id'] ?>">
                 <button type="submit" style="color:red;">Delete</button>
             </form>
+            <a href="index.php?edit=<?= $thread['id'] ?>" style="margin-left:10px;">Edit</a>
         <?php endif; ?>
     </div>
 <?php endforeach; ?>
