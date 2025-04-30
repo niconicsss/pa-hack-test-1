@@ -1,9 +1,9 @@
-<?php include '../config/db.php'; ?>
+<?php include 'config/db.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Register</title>
     <style>
         body {
             margin: 0;
@@ -21,7 +21,7 @@
             padding: 2rem;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
+            width: 320px;
         }
 
         h2 {
@@ -30,8 +30,10 @@
             color: #333;
         }
 
+        input[type="text"],
         input[type="email"],
-        input[type="password"] {
+        input[type="password"],
+        input[type="number"] {
             width: 100%;
             padding: 0.75rem;
             margin: 0.5rem 0;
@@ -43,7 +45,7 @@
         button[type="submit"] {
             width: 100%;
             padding: 0.75rem;
-            background-color: #007BFF;
+            background-color: #28a745;
             border: none;
             border-radius: 4px;
             color: white;
@@ -53,7 +55,7 @@
         }
 
         button[type="submit"]:hover {
-            background-color: #007BFF;
+            background-color: #218838;
         }
 
         a {
@@ -70,12 +72,15 @@
     </style>
 </head>
 <body>
-    <form action="actions/login_action.php" method="POST">
-        <h2>Login</h2>
+    <form action="actions/register_action.php" method="POST">
+        <h2>Register</h2>
+        <input type="text" name="name" placeholder="Full Name" required><br>
         <input type="email" name="email" placeholder="Email" required><br>
         <input type="password" name="password" placeholder="Password" required><br>
-        <button type="submit">Login</button>
-        <a href="register.php">Create an account</a>
+        <input type="text" name="business" placeholder="Business Name" required><br>
+        <input type="number" name="radius" placeholder="Radius (km)" required><br>
+        <button type="submit">Register</button>
+        <a href="index.php">Already have an account? Login</a>
     </form>
 </body>
 </html>
