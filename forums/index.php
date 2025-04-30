@@ -84,7 +84,7 @@ $threads = $pdo->query("SELECT forum_threads.*, users.name FROM forum_threads
     <?php if ($editThread): ?>
         <input type="hidden" name="thread_id" value="<?= $editThread['id'] ?>">
     <?php endif; ?>
-    <input type="text" name="title" placeholder="Thread title" required value="<?= $editThread ? htmlspecialchars($editThread['title']) : '' ?>"><br>
+    <input type="text" name="title" placeholder="Title" required value="<?= $editThread ? htmlspecialchars($editThread['title']) : '' ?>"><br>
     <textarea name="content" placeholder="What's on your mind?" required><?= $editThread ? htmlspecialchars($editThread['content']) : '' ?></textarea><br>
     <button type="submit"><?= $editThread ? 'Update Thread' : 'Post Thread' ?></button>
     <?php if ($editThread): ?>
