@@ -96,8 +96,8 @@ if ($editingReplyId && $userId) {
 <body>
 
 <div style="display: flex; justify-content: flex-end; margin-bottom: 20px;">
-    <a href="../dashboard.php" style="background-color: #7D0A0A; color: #fff; padding: 8px 14px; border-radius: 5px; text-decoration: none; font-weight: bold;">
-        ← Back to Dashboard
+    <a href="index.php" style="background-color: #7D0A0A; color: #fff; padding: 8px 14px; border-radius: 5px; text-decoration: none; font-weight: bold;">
+        ← Back to Forums
     </a>
 </div>
 
