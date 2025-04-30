@@ -20,6 +20,7 @@ $user = $stmt->fetch();
 <head>
     <meta charset="UTF-8">
     <title>Dashboard</title>
+    <link rel="stylesheet" href="styles/dashboard.css">
 </head>
 <body>
 
