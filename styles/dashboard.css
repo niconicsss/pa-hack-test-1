@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Dashboard with Background Slideshow</title>
-  <style>
+
     /* Resetting default margins and paddings */
     * {
         box-sizing: border-box;
@@ -105,14 +100,14 @@
         color: #A31D1D;
     }
 
-    /* === Slideshow Styles (Appended Without Changing Your Original CSS) === */
+    /* === Background Slideshow Styles === */
     .slideshow {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        z-index: -1;
+        z-index: -2;
         overflow: hidden;
     }
 
@@ -140,47 +135,15 @@
         33%  { opacity: 0; }
         100% { opacity: 0; }
     }
-  </style>
-</head>
-<body>
 
-  <!-- Slideshow Background -->
-  <div class="slideshow">
-    <div class="slide"></div>
-    <div class="slide"></div>
-    <div class="slide"></div>
-    <div class="slide"></div>
-    <div class="slide"></div>
-    <div class="slide"></div>
-  </div>
-
-  <!-- Top Bar -->
-  <div class="logout-container">
-    <span>Welcome, User</span>
-    <a href="#">Logout</a>
-  </div>
-
-  <!-- Page Title -->
-  <h1>Dashboard</h1>
-
-  <!-- Dashboard Sections -->
-  <div class="dashboard-sections">
-    <section>
-      <h2>Section 1</h2>
-      <p>Some content for section 1.</p>
-      <a href="#">View More</a>
-    </section>
-    <section>
-      <h2>Section 2</h2>
-      <p>Some content for section 2.</p>
-      <a href="#">View More</a>
-    </section>
-    <section>
-      <h2>Section 3</h2>
-      <p>Some content for section 3.</p>
-      <a href="#">View More</a>
-    </section>
-  </div>
-
-</body>
-</html>
+    /* Optional overlay for readability */
+    .slideshow-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.4); /* light overlay */
+        z-index: -1;
+    }
+ 
