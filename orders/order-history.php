@@ -45,7 +45,7 @@ $orders = $stmt->fetchAll();
 <?php endif; ?>
 
 <p>
-    <a href="place-order.php">➕ Place New Order</a>
+    <a class="button" href="place-order.php">➕ Place New Order</a>
     <a class="button" href="../dashboard.php">⬅ Back to Dashboard</a>
 </p>
 
