@@ -7,7 +7,7 @@
 
 body {
     font-family: 'Segoe UI', sans-serif;
-    background-color: #EEEEEE;
+    background-color: #FEF9E1;
     color: #333;
     padding: 20px;
 }
@@ -48,7 +48,7 @@ h1, h2, h3 {
 
 /* Form Styles */
 form {
-    background-color: #FFFFFF;
+    background-color: #E5D0AC;
     padding: 20px;
     margin-bottom: 25px;
     border: 1px solid #FFFFFF;
@@ -58,12 +58,13 @@ form {
 
 input[type="text"],
 textarea {
+    font-family: 'Segoe UI', sans-serif;
     width: 100%;
     padding: 12px;
     margin: 10px 0 15px;
     border: 1px solid #BF3131;
     border-radius: 5px;
-    background-color: #FAFAFA;
+    background-color: #FEF9E1;
     font-size: 1em;
 }
 
@@ -102,6 +103,7 @@ a:hover {
 
 /* Thread Container */
 .thread {
+    font-family: 'Segoe UI', sans-serif;
     background-color: #FFFFFF;
     border: 1px solid #DDD;
     margin-bottom: 15px;
