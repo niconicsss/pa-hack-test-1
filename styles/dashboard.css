@@ -1,12 +1,12 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
+  background-color: #F8F2DE; /* light cream background */
   padding: 20px;
   margin: 0;
 }
 
 h1, h2 {
-  color: #333;
+  color: #A31D1D; /* deep red for headings */
 }
 
 h1 {
@@ -21,15 +21,15 @@ h2 {
 
 p {
   font-size: 1rem;
-  color: #555;
+  color: #333; /* dark gray for better readability */
   margin-bottom: 20px;
 }
 
 a {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #007BFF;
-  color: white;
+  background-color: #D84040; /* bright red for primary button */
+  color: #F8F2DE; /* light text for contrast */
   text-decoration: none;
   border-radius: 5px;
   margin-bottom: 10px;
@@ -38,14 +38,13 @@ a {
 }
 
 a:hover {
-  background-color: #0056b3;
+  background-color: #A31D1D; /* deep red on hover */
 }
 
 a:active {
-  background-color: #003366;
+  background-color: #333; /* fallback deep color on click */
 }
 
-/* Add some spacing between links */
 a + a {
   margin-left: 10px;
 }
