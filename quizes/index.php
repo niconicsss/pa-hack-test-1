@@ -67,6 +67,9 @@ if (empty($questions)) {
     <link rel="stylesheet" href="../styles/quizzes.css">
 </head>
 <body>
+
+<a href="../courses/index.php" class="back-button">← Back to Courses</a>
+
     <h1>📝 Quiz: <?= htmlspecialchars($course['title']) ?></h1>
 
     <form action="submit.php" method="POST">
