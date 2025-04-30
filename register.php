@@ -77,6 +77,7 @@
         <input type="text" name="name" placeholder="Full Name (Last Name, First Name, M.I)" required><br>
         <input type="email" name="email" placeholder="Email" required><br>
         <input type="password" name="password" placeholder="Password" required><br>
+        <input type="password" name="password" placeholder="Confirm Password" required><br>
         <input type="text" name="business" placeholder="Business Name" required><br>
         <input type="number" name="radius" placeholder="Radius (km)" required><br>
         <button type="submit">Register</button>
