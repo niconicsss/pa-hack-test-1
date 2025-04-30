@@ -44,6 +44,7 @@ $orders = $stmt->fetchAll();
 <p>
     <a href="place-order.php">➕ Place New Order</a>
     <a href="order-success.php">✅ View Order Success Page</a>
+    <a class="button" href="../dashboard.php">⬅ Back to Dashboard</a>
 </p>
 
 </body>
