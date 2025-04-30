@@ -36,7 +36,7 @@ $user = $stmt->fetch();
     <a href="orders/order-history.php">View Orders</a>
 
     <!-- Link to track orders -->
-    <a href="orders/status.php">Track Orders</a>
+    <a href="orders/order-status.php">Track Orders</a>
 
     <!-- Button to log out -->
     <a href="login.php">Logout</a>
