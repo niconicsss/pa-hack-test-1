@@ -91,6 +91,7 @@ if ($editingReplyId && $userId) {
 <html>
 <head>
     <title><?= htmlspecialchars($thread['title']) ?> - Forum</title>
+    <link rel="stylesheet" href="../styles/thread.css">
 </head>
 <body>
     <h1><?= htmlspecialchars($thread['title']) ?></h1>
