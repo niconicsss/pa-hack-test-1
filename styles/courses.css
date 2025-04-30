@@ -55,10 +55,18 @@ select {
     margin-bottom: 1.5rem;
 }
 
+.course-header {
+    width: 100%;
+    max-width: 1000px;
+    text-align: center;
+    margin-bottom: 2rem; /* Adds space between header/form and course list */
+}
+
 /* Course List */
 .course-list {
     width: 100%;
     max-width: 1000px;
+    margin-top: 2rem; /* Add spacing above the course list */
 }
 
 .course-list ul {
