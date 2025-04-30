@@ -27,5 +27,5 @@ if (!$course) {
     </video>
 <?php endif; ?>
 
-<p><a href="../quizzes/take.php?course_id=<?php echo $course['id']; ?>">Take Quiz</a></p>
+<a class="btn" href="../quizes/index.php?course_id=<?= $course['id'] ?>">Take Quiz 📝</a>
 <p><a href="../progress/index.php">Track Progress</a></p>
