@@ -1,44 +1,67 @@
 <?php
 session_start();
 if (!isset($_SESSION['user_id'])) {
-    header('Location: index.php'); // Redirect if not logged in
+    header('Location: index.php');
     exit;
 }
 
-include('config/db.php');
+require 'config/db.php';
 $user_id = $_SESSION['user_id'];
 
 // Fetch user info
-$sql = "SELECT * FROM users WHERE id = ?";
-$stmt = $pdo->prepare($sql);
+$stmt = $pdo->prepare("SELECT * FROM users WHERE id = ?");
 $stmt->execute([$user_id]);
-$user = $stmt->fetch();
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard</title>
+    <title>Logistics Learning Dashboard</title>
     <link rel="stylesheet" href="styles/dashboard.css">
 </head>
 <body>
 
-    <!-- Logout Button (Top Right) -->
+    <!-- Top Bar -->
     <div class="logout-container">
-        <a href="login.php">🚪 Logout</a>
+        <span>Welcome, <?php echo htmlspecialchars($user['name']); ?></span>
+        <a href="logout.php">🚪 Logout</a>
     </div>
 
-    <h1>Welcome, <?php echo htmlspecialchars($user['name']); ?></h1>
+    <h1>📦 Logistics Skills Hub</h1>
 
-    <!-- Button to search nearby businesses -->
-    <a href="business/list.php">Search Nearby Businesses</a>
+    <div class="dashboard-sections">
+        <section>
+            <h2>📚 Course Library</h2>
+            <p>Learn essential digital tools and logistics practices to stay competitive.</p>
+            <a href="courses/index.php">Access Courses</a>
+        </section>
 
-    <!-- Link to view orders -->
-    <a href="orders/order-history.php">View Orders</a>
+        <section>
+            <h2>📈 Progress Tracking</h2>
+            <p>Track your learning journey and monitor your improvement over time.</p>
+            <a href="progress/index.php">View Progress</a>
+        </section>
 
-    <!-- Link to track orders -->
-    <a href="orders/order-status.php">Track Orders</a>
+        <section>
+            <h2>🧠 Interactive Quizzes</h2>
+            <p>Test your knowledge and reinforce what you've learned with quick assessments.</p>
+            <a href="quizzes/index.php">Take a Quiz</a>
+        </section>
+
+        <section>
+            <h2>📱 Mobile-Friendly Access</h2>
+            <p>Learn anytime, anywhere – optimized for use on mobile devices.</p>
+            <a href="mobile/index.php">Start Mobile Learning</a>
+        </section>
+
+        <section>
+            <h2>👥 Community Forum</h2>
+            <p>Connect with fellow workers, ask questions, and share logistics tips.</p>
+            <a href="forum/index.php">Join the Discussion</a>
+        </section>
+    </div>
 
 </body>
 </html>

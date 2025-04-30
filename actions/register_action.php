@@ -3,13 +3,19 @@ require '../config/db.php';
 
 $name = $_POST['name'];
 $email = $_POST['email'];
-$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+$password = $_POST['password'];
+$confirm_password = $_POST['confirm_password'];
+
+if ($password !== $confirm_password) {
+    echo "Passwords do not match.";
+    exit;
+}
+
+$hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
 try {
-    // Insert only user details (no business or radius)
-    $sql = "INSERT INTO users (name, email, password) VALUES (?, ?, ?)";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$name, $email, $password]);
+    $stmt = $pdo->prepare("INSERT INTO users (name, email, password_hash) VALUES (?, ?, ?)");
+    $stmt->execute([$name, $email, $hashed_password]);
 
     header("Location: ../index.php?registered=1");
     exit;

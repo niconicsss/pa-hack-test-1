@@ -61,4 +61,3 @@ CREATE TABLE certifications (
     FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (course_id) REFERENCES courses(id)
 );
-
