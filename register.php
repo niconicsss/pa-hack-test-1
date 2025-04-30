@@ -8,7 +8,7 @@
         body {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
+            font-family: Verdana, sans-serif;
             background: #f4f4f4;
             display: flex;
             align-items: center;
