@@ -26,37 +26,10 @@ if (!$company_id) {
     <meta charset="UTF-8">
     <title>Select a Quiz - SkillCargo</title>
     <link rel="stylesheet" href="../styles/dashboard.css"> <!-- Adjusted relative path -->
-    <style>
-        .course-box {
-            border: 1px solid #ccc;
-            padding: 12px;
-            margin-bottom: 10px;
-            border-radius: 8px;
-            background-color: #f9f9f9;
-        }
-        .course-title {
-            font-weight: bold;
-            font-size: 18px;
-        }
-        .quiz-button {
-            margin-top: 8px;
-        }
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-        }
-        .logout-container {
-            text-align: right;
-            margin-bottom: 20px;
-        }
-    </style>
+
 </head>
 <body>
 
-    <div class="logout-container">
-        <span>Welcome, <?php echo htmlspecialchars($user['name']); ?></span>
-        <a href="login.php">🚪 Logout</a>
-    </div>
 
     <h1>🧠 Take a Quiz</h1>
     <p>Select a course below to begin the quiz:</p>
