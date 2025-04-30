@@ -94,6 +94,6 @@ if (empty($questions)) {
         <button type="submit">Submit Quiz</button>
     </form>
 
-    <p><a href="../courses/index.php">← Back to Courses</a></p>
+  
 </body>
 </html>

@@ -30,6 +30,9 @@ if (!$company_id) {
 </head>
 <body>
 
+    <div class="top-right-button">
+        <a href="../dashboard.php">← Back to Dashboard</a>
+    </div>
 
     <h1>🧠 Take a Quiz</h1>
     <p>Select a course below to begin the quiz:</p>
@@ -61,8 +64,6 @@ if (!$company_id) {
         echo "<p>No available quizzes for your company.</p>";
     endif;
     ?>
-
-    <p><a href="../dashboard.php">← Back to Dashboard</a></p>
-
 </body>
+
 </html>
