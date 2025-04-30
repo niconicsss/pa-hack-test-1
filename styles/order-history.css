@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #F8F2DE; /* light cream background */
+    background-color: #F8F2DE; 
     padding: 40px;
     margin: 0;
     color: #333;
@@ -8,14 +8,14 @@ body {
 
 h2 {
     font-size: 2rem;
-    color: #A31D1D; /* deep red heading */
+    color: #A31D1D; 
     margin-bottom: 30px;
     text-align: center;
 }
 
 .order-card {
     background-color: #ffffff;
-    border: 1px solid #ECDCBF; /* soft beige border */
+    border: 1px solid #ECDCBF; 
     border-radius: 8px;
     padding: 20px;
     margin-bottom: 20px;
@@ -29,7 +29,7 @@ h2 {
 
 .order-card h3 {
     margin: 0 0 10px;
-    color: #D84040; /* strong red for subheading */
+    color: #D84040; git 
     font-size: 1.2rem;
 }
 
