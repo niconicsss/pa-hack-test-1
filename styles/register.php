@@ -1,4 +1,4 @@
-<?php include 'config/db.php'; ?>
+<?php include '../config/db.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -74,7 +74,7 @@
 <body>
     <form action="actions/register_action.php" method="POST">
         <h2>Register</h2>
-        <input type="text" name="name" placeholder="Full Name" required><br>
+        <input type="text" name="name" placeholder="Full Name (Last Name, First Name, M.I)" required><br>
         <input type="email" name="email" placeholder="Email" required><br>
         <input type="password" name="password" placeholder="Password" required><br>
         <input type="text" name="business" placeholder="Business Name" required><br>
