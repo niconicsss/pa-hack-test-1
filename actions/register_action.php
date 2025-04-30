@@ -8,7 +8,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $business = $_POST['business'];
     $radius = $_POST['radius'];
 
-    // Prepare the SQL query
     $sql = "INSERT INTO users (name, email, password, business, radius) VALUES (?, ?, ?, ?, ?)";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$name, $email, $password, $business, $radius]);
