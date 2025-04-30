@@ -31,11 +31,7 @@ $threads = $pdo->query("SELECT forum_threads.*, users.name FROM forum_threads
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Community Forum</title>
-</head>
 <body>
-    <h1>Community Forum</h1>
-    <p>Connect with fellow workers, ask questions, and share logistics tips.</p>
 
     <h2>Start a New Thread</h2>
     <form method="POST">
@@ -52,5 +48,6 @@ $threads = $pdo->query("SELECT forum_threads.*, users.name FROM forum_threads
             <small>Posted by <?= htmlspecialchars($thread['name']) ?> on <?= $thread['created_at'] ?></small>
         </div>
     <?php endforeach; ?>
+    </head>
 </body>
 </html>
