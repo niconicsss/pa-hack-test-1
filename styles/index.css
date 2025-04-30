@@ -1,32 +1,39 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
+* {
+    box-sizing: border-box;
     margin: 0;
-    padding: 20px;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #EEEEEE;
     color: #333;
+    padding: 20px;
 }
 
 h2 {
-    color: #2c3e50;
+    color: #7D0A0A;
+    margin-bottom: 1rem;
 }
 
 form {
-    background: #fff;
-    padding: 15px;
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
+    background-color: #FFFFFF;
+    padding: 20px;
+    margin-bottom: 25px;
+    border: 1px solid #FFFFFF;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(125, 10, 10, 0.1);
 }
 
 input[type="text"],
 textarea {
     width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: 12px;
+    margin: 10px 0 15px;
+    border: 1px solid #BF3131;
+    border-radius: 5px;
+    background-color: #FAFAFA;
     font-size: 1em;
-    box-sizing: border-box;
 }
 
 textarea {
@@ -35,41 +42,50 @@ textarea {
 }
 
 button {
-    background-color: #3498db;
-    color: white;
+    background-color: #BF3131;
+    color: #EEEEEE;
     padding: 10px 16px;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
+    font-weight: bold;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #2980b9;
+    background-color: #7D0A0A;
 }
 
 a {
-    color: #3498db;
+    color: #7D0A0A;
+    font-weight: bold;
     text-decoration: none;
+    transition: color 0.2s ease;
 }
 
 a:hover {
+    color: #BF3131;
     text-decoration: underline;
 }
 
 .thread {
-    background: #fff;
-    border: 1px solid #ddd;
+    background-color: #FFFFFF;
+    border: 1px solid #DDD;
     margin-bottom: 15px;
-    padding: 15px;
-    border-radius: 6px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(125, 10, 10, 0.1);
 }
 
 .thread h3 {
     margin: 0 0 10px;
+    color: #7D0A0A;
 }
 
 .thread small {
     color: #777;
+    display: block;
+    margin-top: 8px;
 }
 
 .thread form {
@@ -77,11 +93,12 @@ a:hover {
 }
 
 .thread button {
-    background-color: #e74c3c;
+    background-color: #E74C3C;
+    margin-top: 10px;
 }
 
 .thread button:hover {
-    background-color: #c0392b;
+    background-color: #C0392B;
 }
 
 .cancel-link {
