@@ -92,13 +92,22 @@ a:hover {
     display: inline;
 }
 
-.thread button {
-    background-color: #E74C3C;
-    margin-top: 10px;
+/* Updated delete button style inside thread */
+.thread form button {
+    padding: 1px 4px;
+    font-size: 0.7em;
+    background-color: transparent;
+    color: #E74C3C;
+    border: 1px solid #E74C3C;
+    border-radius: 2px;
+    font-weight: normal;
+    margin-top: 0;
+    margin-left: 8px;
 }
 
-.thread button:hover {
-    background-color: #C0392B;
+.thread form button:hover {
+    background-color: #E74C3C;
+    color: #FFFFFF;
 }
 
 .cancel-link {
