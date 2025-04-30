@@ -53,7 +53,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
         <section>
             <h2>👥 Community Forum</h2>
             <p>Connect with fellow workers, ask questions, and share logistics tips.</p>
-            <a href="forum/index.php">Join the Discussion</a>
+            <a href="forums/index.php">Join the Discussion</a>
         </section>
     </div>
 
