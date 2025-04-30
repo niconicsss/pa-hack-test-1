@@ -13,6 +13,6 @@
         <input type="password" name="password" placeholder="Password" required><br>
         <button type="submit">Login</button>
         <a href="register.php">Create an account</a>
-    </form>
+     </form>
 </body>
 </html>

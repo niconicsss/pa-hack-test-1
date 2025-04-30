@@ -15,6 +15,6 @@
         <input type="password" name="confirm_password" placeholder="Confirm Password" required><br>
         <button type="submit">Register</button>
         <a href="login.php">Already have an account? Login</a>
-    </form>
+     </form>
 </body>
 </html>

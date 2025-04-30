@@ -1,7 +1,7 @@
 <?php
 session_start();
 require '../config/db.php';
-
+ 
 $email = $_POST['email'];
 $password = $_POST['password'];
 
