@@ -32,6 +32,9 @@ $user = $stmt->fetch();
     <!-- Button to search nearby businesses -->
     <a href="business/list.php">Search Nearby Businesses</a>
 
+    <!-- Button to create order -->
+    <a href="orders/create-order.php">Create Order</a>
+
     <!-- Link to view orders -->
     <a href="orders/order-history.php">View Orders</a>
 

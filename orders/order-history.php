@@ -25,7 +25,7 @@ $orders = $stmt->fetchAll();
 <head>
     <meta charset="UTF-8">
     <title>Your Order History</title>
-    <link rel="stylesheet" href="styles/order-history.css">
+    <link rel="stylesheet" href="styles/order-historyg.css">
 <h1>Your Orders</h1>
 
 <?php if (count($orders) > 0): ?>
