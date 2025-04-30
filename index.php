@@ -8,7 +8,7 @@
         body {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
+            font-family: Verdana, sans-serif;
             background: #f4f4f4;
             display: flex;
             align-items: center;
@@ -16,7 +16,7 @@
             height: 100vh;
         }
 
-        form {
+        .login-form {
             background: white;
             padding: 2rem;
             border-radius: 8px;
@@ -53,7 +53,7 @@
         }
 
         button[type="submit"]:hover {
-            background-color: #007BFF;
+            background-color: #0056b3;
         }
 
         a {
@@ -70,7 +70,7 @@
     </style>
 </head>
 <body>
-    <form action="actions/login_action.php" method="POST">
+    <form class="login-form" action="actions/login_action.php" method="POST">
         <h2>Login</h2>
         <input type="email" name="email" placeholder="Email" required><br>
         <input type="password" name="password" placeholder="Password" required><br>
