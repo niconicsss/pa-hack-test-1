@@ -1,13 +1,14 @@
 <?php
-$host = 'localhost';
-$dbname = 'db'; // Make sure this DB exists!
-$username = 'root';
-$password = 'your_password_here'; // <-- change this
+$host = 'localhost';      // Database host
+$dbname = 'business_orders_db'; // Database name
+$username = 'root'; // Database username
+$password = 'root'; // Database password
 
 try {
+    // Create PDO connection
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
-    die("Connection failed: " . $e->getMessage());
+    echo "Connection failed: " . $e->getMessage();
 }
 ?>
