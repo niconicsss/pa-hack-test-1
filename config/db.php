@@ -1,6 +1,6 @@
 <?php
 $host = 'localhost';      // Database host
-$dbname = 'business_orders_db'; // Database name
+$dbname = 'test'; // Database name
 $username = 'root'; // Database username
 $password = 'root'; // Database password
 
