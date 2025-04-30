@@ -66,6 +66,16 @@
     margin-top: 1rem;
     text-align: center;
     font-size: 0.9rem;
+  }
+  
+  .login-container .bottom-link a {
     color: #7D0A0A;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  
+  .login-container .bottom-link a:hover {
+    color: #BF3131;
   }
   
