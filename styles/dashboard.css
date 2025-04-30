@@ -8,8 +8,8 @@
 /* Body styling */
 body {
     font-family: 'Segoe UI', sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
+    background-color: #FEF9E1;
+    color: #000000;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -19,7 +19,7 @@ body {
 /* Top Bar Styling */
 .logout-container {
     width: 100%;
-    background-color: #4CAF50;
+    background-color: #A31D1D;
     color: #fff;
     display: flex;
     justify-content: space-between;
@@ -41,7 +41,7 @@ body {
 }
 
 .logout-container a:hover {
-    color: #ddd;
+    color: #E5D0AC;
 }
 
 /* Main title styling */
@@ -49,7 +49,7 @@ h1 {
     text-align: center;
     font-size: 3rem;
     margin-top: 3rem;
-    color: #333;
+    color: #6D2323;
 }
 
 /* Dashboard Section Styling */
@@ -63,38 +63,38 @@ h1 {
 }
 
 section {
-    background-color: #fff;
+    background-color: #E5D0AC;
     padding: 1.5rem;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 section:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
 section h2 {
     font-size: 1.8rem;
-    color: #4CAF50;
+    color: #A31D1D;
     margin-bottom: 1rem;
 }
 
 section p {
     font-size: 1rem;
-    color: #666;
+    color: #333;
     margin-bottom: 1.5rem;
 }
 
 section a {
     font-size: 1.1rem;
-    color: #4CAF50;
+    color: #6D2323;
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s ease;
 }
 
 section a:hover {
-    color: #45a049;
+    color: #A31D1D;
 }
