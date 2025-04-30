@@ -1,48 +1,64 @@
-create database business_orders_db;
+CREATE DATABASE digital_training;
+USE digital_training;
 
- use business_orders_db;
- 
- CREATE TABLE users (
+
+CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    email VARCHAR(100) UNIQUE NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    business VARCHAR(100) NOT NULL,
-    radius INT NOT NULL,  -- Radius in kilometers
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    role ENUM('learner', 'admin') DEFAULT 'learner',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
-
-CREATE TABLE businesses (
+CREATE TABLE courses (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    address VARCHAR(255),
-    latitude DECIMAL(9, 6),
-    longitude DECIMAL(9, 6),
-    category VARCHAR(50),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    title VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
+    category VARCHAR(100),
+    level ENUM('beginner', 'intermediate', 'advanced'),
+    video_url VARCHAR(255),        -- Link to the course video
+    image_url VARCHAR(255),        -- Image representing the course
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
-
-CREATE TABLE orders (
+CREATE TABLE quizzes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    course_id INT NOT NULL,
+    question TEXT NOT NULL,
+    option_1 VARCHAR(255) NOT NULL,
+    option_2 VARCHAR(255) NOT NULL,
+    option_3 VARCHAR(255),
+    option_4 VARCHAR(255),
+    correct_option INT NOT NULL,   -- Refers to the correct answer (1, 2, 3, or 4)
+    FOREIGN KEY (course_id) REFERENCES courses(id)
+);
+CREATE TABLE quiz_responses (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
-    business_id INT NOT NULL,
-    order_details TEXT NOT NULL,
-    status ENUM('Pending', 'In Progress', 'Delivered') DEFAULT 'Pending',
+    quiz_id INT NOT NULL,
+    selected_option INT NOT NULL,
+    is_correct BOOLEAN,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (business_id) REFERENCES businesses(id)
+    FOREIGN KEY (quiz_id) REFERENCES quizzes(id)
 );
-
-CREATE TABLE payments (
+CREATE TABLE progress (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    order_id INT NOT NULL,
-    payment_method ENUM('GCash', 'Bank Transfer', 'Credit/Debit Card') NOT NULL,
-    amount DECIMAL(10, 2) NOT NULL,
-    payment_status ENUM('Pending', 'Completed', 'Failed') DEFAULT 'Pending',
-    payment_proof VARCHAR(255),  -- Store path for proof of payment (optional)
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (order_id) REFERENCES orders(id)
+    user_id INT NOT NULL,
+    course_id INT NOT NULL,
+    status ENUM('in-progress', 'completed') DEFAULT 'in-progress',
+    last_accessed TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (course_id) REFERENCES courses(id)
+);
+CREATE TABLE certifications (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    course_id INT NOT NULL,
+    certificate_url VARCHAR(255),  -- URL or file path for the digital certificate
+    awarded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (course_id) REFERENCES courses(id)
 );
 
-select * from users;
