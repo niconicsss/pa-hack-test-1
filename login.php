@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-    <link rel="stylesheet" href="styles/login.css">
+    <link rel="stylesheet" href="../styles/login.css">
 </head>
 <body>
     <form class="login-form" action="actions/login_action.php" method="POST">
