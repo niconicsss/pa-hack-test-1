@@ -25,7 +25,7 @@ if (!$company_id) {
 <head>
     <meta charset="UTF-8">
     <title>Select a Quiz - SkillCargo</title>
-    <link rel="stylesheet" href="../styles/dashboard.css"> <!-- Adjusted relative path -->
+    <link rel="stylesheet" href="../styles/quizzes2.css"> <!-- Adjusted relative path -->
 
 </head>
 <body>
