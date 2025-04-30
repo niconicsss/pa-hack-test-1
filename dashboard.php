@@ -24,6 +24,11 @@ $user = $stmt->fetch();
 </head>
 <body>
 
+    <!-- Logout Button (Top Right) -->
+    <div class="logout-container">
+        <a href="logout.php">🚪 Logout</a>
+    </div>
+
     <h1>Welcome, <?php echo htmlspecialchars($user['name']); ?></h1>
 
     <h2>Your Business: <?php echo htmlspecialchars($user['business']); ?></h2>
@@ -32,16 +37,11 @@ $user = $stmt->fetch();
     <!-- Button to search nearby businesses -->
     <a href="business/list.php">Search Nearby Businesses</a>
 
-    
-
     <!-- Link to view orders -->
     <a href="orders/order-history.php">View Orders</a>
 
     <!-- Link to track orders -->
     <a href="orders/order-status.php">Track Orders</a>
-
-    <!-- Button to log out -->
-    <a href="login.php">Logout</a>
 
 </body>
 </html>
