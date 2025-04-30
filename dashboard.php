@@ -21,63 +21,101 @@ $user = $stmt->fetch();
     <meta charset="UTF-8">
     <title>Dashboard</title>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Verdana, sans-serif;
-            background-color: #f4f4f4;
-        }
-
-        .header {
-            position: fixed;
-            top: 10px;
-            right: 20px;
-            font-weight: bold;
-        }
-
-        .dashboard {
-            margin-top: 50px;
-            padding: 20px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            background-color: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        h1, h2 {
-            color: #333;
-        }
-
-        p {
-            color: #555;
-        }
-
-        .tabs {
-            margin: 20px 0;
-            display: flex;
-            justify-content: space-around;
-        }
-
-        .tabs a {
-            padding: 10px 20px;
-            background-color: #007BFF;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            text-align: center;
-            transition: background-color 0.3s ease;
-        }
-
-        .tabs a:hover {
-            background-color: #0056b3;
-        }
-
-        .content {
-            margin-top: 20px;
-        }
+       * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-color);
+  }
+  
+  .dashboard {
+    display: flex;
+    min-height: 100vh;
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    background-color: var(--accent-dark);
+    color: white;
+    width: 220px;
+    padding: 20px;
+  }
+  
+  .sidebar h2 {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    color: var(--primary-color);
+  }
+  
+  .sidebar nav a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    padding: 8px;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+  }
+  
+  .sidebar nav a:hover {
+    background-color: var(--primary-color);
+  }
+  
+  /* Main content */
+  .main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Header */
+  .topbar {
+    background-color: var(--card-bg);
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #d6c7ac;
+  }
+  
+  .topbar h1 {
+    font-size: 1.8rem;
+  }
+  
+  .user-profile {
+    font-weight: bold;
+    color: var(--accent-dark);
+  }
+  
+  /* Content */
+  .content {
+    padding: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  .card {
+    background-color: var(--card-bg);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    font-size: 1.1rem;
+    font-weight: 500;
+    border-left: 5px solid var(--primary-color);
+    transition: transform 0.2s;
+  }
+  
+  .card:hover {
+    transform: scale(1.02);
+    border-left-color: var(--accent-dark);
+  }
     </style>
 </head>
 <body>
@@ -106,4 +144,4 @@ $user = $stmt->fetch();
 </div>
 
 </body>
-</html>
+</html>gitpl
