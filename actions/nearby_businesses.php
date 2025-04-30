@@ -1,39 +1,19 @@
 <?php
 require '../config/db.php';
-
 header('Content-Type: application/json');
 
-// Get latitude, longitude, and category from AJAX request
-$userLat = $_POST['latitude'];
-$userLon = $_POST['longitude'];
+// Check if category is provided
+if (!isset($_POST['category'])) {
+    echo json_encode(['error' => 'Missing category']);
+    exit;
+}
+
 $category = $_POST['category'];
-$radius = 5; // Example radius: 5 km
 
-// Prepare SQL to fetch nearby businesses using the Haversine formula
-$sql = "
-    SELECT *, (
-        6371 * ACOS(
-            COS(RADIANS(:userLat)) * COS(RADIANS(latitude)) *
-            COS(RADIANS(longitude) - RADIANS(:userLon)) +
-            SIN(RADIANS(:userLat)) * SIN(RADIANS(latitude))
-        )
-    ) AS distance
-    FROM businesses
-    WHERE category = :category
-    HAVING distance <= :radius
-    ORDER BY distance ASC
-";
-
+// Fetch all businesses with the selected category
+$sql = "SELECT * FROM businesses WHERE category = :category ORDER BY name ASC";
 $stmt = $pdo->prepare($sql);
-$stmt->execute([
-    ':userLat' => $userLat,
-    ':userLon' => $userLon,
-    ':category' => $category,
-    ':radius' => $radius
-]);
+$stmt->execute([':category' => $category]);
+$results = $stmt->fetchAll();
 
-$businesses = $stmt->fetchAll();
-
-// Return the data as JSON
-echo json_encode($businesses);
-?>
+echo json_encode($results);
