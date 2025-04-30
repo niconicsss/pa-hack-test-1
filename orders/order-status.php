@@ -28,7 +28,7 @@ $orders = $stmt->fetchAll();
 </head>
 <body>
 
-    <h2>Track Your Orders</h2>
+    <h1>Track Your Orders</h1>
 
     <?php if (count($orders) > 0): ?>
         <?php foreach ($orders as $order): ?>

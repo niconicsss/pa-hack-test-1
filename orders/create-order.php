@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<h2>Place an Order</h2>
+<h1>Place an Order</h1>
 <form action="../actions/place_order.php" method="POST">
     <label for="business_id">Business</label><br>
     <select name="business_id" id="business_id" required>
