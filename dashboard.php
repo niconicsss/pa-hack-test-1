@@ -31,9 +31,6 @@ $user = $stmt->fetch();
 
     <h1>Welcome, <?php echo htmlspecialchars($user['name']); ?></h1>
 
-    <h2>Your Business: <?php echo htmlspecialchars($user['business']); ?></h2>
-    <p>Radius: <?php echo htmlspecialchars($user['radius']); ?> km</p>
-
     <!-- Button to search nearby businesses -->
     <a href="business/list.php">Search Nearby Businesses</a>
 
