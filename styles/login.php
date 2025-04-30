@@ -43,7 +43,7 @@
         button[type="submit"] {
             width: 100%;
             padding: 0.75rem;
-            background-color: #007BFF;
+            background-color: #A31D1D;
             border: none;
             border-radius: 4px;
             color: white;
@@ -53,7 +53,7 @@
         }
 
         button[type="submit"]:hover {
-            background-color: #007BFF;
+            background-color: #A31D1D;
         }
 
         a {
