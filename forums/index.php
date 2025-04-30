@@ -11,12 +11,34 @@ if (!isset($_SESSION['user_id'])) {
 $userId = $_SESSION['user_id'];
 
 // Handle new thread submission
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['title'], $_POST['content'])) {
-    $title = trim($_POST['title']);
-    $content = trim($_POST['content']);
-    if ($title && $content) {
-        $stmt = $pdo->prepare("INSERT INTO forum_threads (user_id, title, content) VALUES (?, ?, ?)");
-        $stmt->execute([$userId, $title, $content]);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // New thread
+    if (isset($_POST['title'], $_POST['content'])) {
+        $title = trim($_POST['title']);
+        $content = trim($_POST['content']);
+        if ($title && $content) {
+            $stmt = $pdo->prepare("INSERT INTO forum_threads (user_id, title, content) VALUES (?, ?, ?)");
+            $stmt->execute([$userId, $title, $content]);
+            header('Location: index.php');
+            exit;
+        }
+    }
+
+    // Delete thread
+    if (isset($_POST['delete_thread_id'])) {
+        $threadId = $_POST['delete_thread_id'];
+
+        // Check ownership
+        $stmt = $pdo->prepare("SELECT * FROM forum_threads WHERE id = ? AND user_id = ?");
+        $stmt->execute([$threadId, $userId]);
+        $thread = $stmt->fetch();
+
+        if ($thread) {
+            $stmt = $pdo->prepare("DELETE FROM forum_threads WHERE id = ?");
+            $stmt->execute([$threadId]);
+            // Optional: delete associated replies if needed
+        }
+
         header('Location: index.php');
         exit;
     }
@@ -31,23 +53,32 @@ $threads = $pdo->query("SELECT forum_threads.*, users.name FROM forum_threads
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Forum</title>
+</head>
 <body>
 
-    <h2>Start a New Thread</h2>
-    <form method="POST">
-        <input type="text" name="title" placeholder="Thread title" required><br>
-        <textarea name="content" placeholder="What's on your mind?" required></textarea><br>
-        <button type="submit">Post Thread</button>
-    </form>
+<h2>Start a New Thread</h2>
+<form method="POST">
+    <input type="text" name="title" placeholder="Thread title" required><br>
+    <textarea name="content" placeholder="What's on your mind?" required></textarea><br>
+    <button type="submit">Post Thread</button>
+</form>
 
-    <h2>Recent Discussions</h2>
-    <?php foreach ($threads as $thread): ?>
-        <div style="border:1px solid #ccc; margin-bottom:10px; padding:10px;">
-            <h3><a href="thread.php?id=<?= $thread['id'] ?>"><?= htmlspecialchars($thread['title']) ?></a></h3>
-            <p><?= nl2br(htmlspecialchars(substr($thread['content'], 0, 150))) ?>...</p>
-            <small>Posted by <?= htmlspecialchars($thread['name']) ?> on <?= $thread['created_at'] ?></small>
-        </div>
-    <?php endforeach; ?>
-    </head>
+<h2>Recent Discussions</h2>
+<?php foreach ($threads as $thread): ?>
+    <div style="border:1px solid #ccc; margin-bottom:10px; padding:10px;">
+        <h3><a href="thread.php?id=<?= $thread['id'] ?>"><?= htmlspecialchars($thread['title']) ?></a></h3>
+        <p><?= nl2br(htmlspecialchars(substr($thread['content'], 0, 150))) ?>...</p>
+        <small>Posted by <?= htmlspecialchars($thread['name']) ?> on <?= $thread['created_at'] ?></small>
+
+        <?php if ($thread['user_id'] == $userId): ?>
+            <form method="POST" onsubmit="return confirm('Are you sure you want to delete this thread?');" style="margin-top:5px;">
+                <input type="hidden" name="delete_thread_id" value="<?= $thread['id'] ?>">
+                <button type="submit" style="color:red;">Delete</button>
+            </form>
+        <?php endif; ?>
+    </div>
+<?php endforeach; ?>
+
 </body>
 </html>
