@@ -94,6 +94,13 @@ if ($editingReplyId && $userId) {
     <link rel="stylesheet" href="../styles/thread.css">
 </head>
 <body>
+
+<div style="display: flex; justify-content: flex-end; margin-bottom: 20px;">
+    <a href="../dashboard.php" style="background-color: #7D0A0A; color: #fff; padding: 8px 14px; border-radius: 5px; text-decoration: none; font-weight: bold;">
+        ← Back to Dashboard
+    </a>
+</div>
+
     <h1><?= htmlspecialchars($thread['title']) ?></h1>
     <p><?= nl2br(htmlspecialchars($thread['content'])) ?></p>
     <small>Posted by <?= htmlspecialchars($thread['name']) ?> on <?= $thread['created_at'] ?></small>
