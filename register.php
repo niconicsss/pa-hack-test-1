@@ -19,13 +19,14 @@
             <input type="password" name="password" placeholder="Password" required>
             <input type="password" name="confirm_password" placeholder="Confirm Password" required>
 
-            <!-- Dropdown for selecting company -->
-            <label for="company_id">Select your Company</label>
-            <select name="company_id" id="company_id" required>
+             <!-- Dropdown for selecting company -->
+             <label for="company_id">Select your Company</label>
+                <select name="company_id" id="company_id" required>
+                <option value="">-- Select Company --</option>
                 <?php
-                $stmt = $pdo->query("SELECT id, name FROM companies");
+                $stmt = $pdo->query("SELECT id, name FROM companies ORDER BY name ASC");
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    echo "<option value='" . $row['id'] . "'>" . $row['name'] . "</option>";
+                    echo "<option value='" . htmlspecialchars($row['id']) . "'>" . htmlspecialchars($row['name']) . "</option>";
                 }
                 ?>
             </select>
