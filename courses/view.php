@@ -69,7 +69,6 @@ if (!$progress) {
     <?php endif; ?>
 
     <a class="btn" href="../quizes/index.php?course_id=<?= $course['id'] ?>">Take Quiz 📝</a>
-    <p><a href="../progress/index.php">Track Progress</a></p>
 
 </body>
 </html>
