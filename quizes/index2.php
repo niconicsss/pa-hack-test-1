@@ -38,7 +38,6 @@ if (!$company_id) {
     <p>Select a course below to begin the quiz:</p>
 
     <?php
-    // Fetch courses assigned to the user's company
     $stmt = $pdo->prepare("
         SELECT c.id, c.title 
         FROM courses c
