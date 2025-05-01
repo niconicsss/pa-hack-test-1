@@ -1,0 +1,99 @@
+/* Reset and base layout */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #FEF9E1;
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+}
+
+/* Title */
+h1 {
+    font-size: 2.5rem;
+    color: #6D2323;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* Question block styling */
+.question-block {
+    background-color: #E5D0AC;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    width: 100%;
+    max-width: 700px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.question-block p {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.question-block label {
+    display: block;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    color: #000;
+}
+
+.question-block input[type="radio"] {
+    margin-right: 0.5rem;
+}
+
+/* Submit button */
+button[type="submit"] {
+    background-color: #A31D1D;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 1rem;
+}
+
+button[type="submit"]:hover {
+    background-color: #6D2323;
+}
+
+/* Back to Courses Button (Top-Right Fixed) */
+a.back-button {
+    position: fixed;
+    top: 1.5rem;
+    right: 2rem;
+    padding: 0.6rem 1.2rem;
+    background-color: #BF3131;
+    color: #EEEEEE;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    z-index: 1000;
+}
+
+a.back-button:hover {
+    background-color: #7D0A0A;
+    color: #FFFFFF;
+}
+
+/* Divider */
+hr {
+    border: 0;
+    height: 1px;
+    background-color: #ccc;
+    margin: 2rem 0;
+}

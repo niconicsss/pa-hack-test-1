@@ -205,11 +205,19 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
       <a href="progress/index.php">View Progress</a>
     </section>
 
+<<<<<<< HEAD
     <section>
       <h2>🧠 Interactive Quizzes</h2>
       <p>Test your knowledge and reinforce what you've learned with quick assessments.</p>
       <a href="quizzes/index.php">Take a Quiz</a>
     </section>
+=======
+        <section>
+            <h2>🧠 Interactive Quizzes</h2>
+            <p>Test your knowledge and reinforce what you've learned with quick assessments.</p>
+            <a href="quizes/index2.php">Take a Quiz</a>
+        </section>
+>>>>>>> b5d1febeb1a59ef2cb74e653a89a555a54e6f690
 
     <section>
       <h2>👥 Community Forum</h2>

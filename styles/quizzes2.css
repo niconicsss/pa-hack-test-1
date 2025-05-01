@@ -1,0 +1,118 @@
+/* Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Body Styling */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #FEF9E1;
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem;
+    position: relative;
+}
+
+/* Top Right Back Button */
+.top-right-button {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+}
+
+.top-right-button a {
+    background-color: #BF3131;
+    color: #EEEEEE;
+    padding: 0.6rem 1.2rem;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.top-right-button a:hover {
+    background-color: #7D0A0A;
+    color: #FFFFFF;
+}
+
+/* Title and Description */
+h1 {
+    text-align: center;
+    font-size: 3rem;
+    color: #6D2323;
+    margin-top: 5rem;
+}
+
+p {
+    font-size: 1.2rem;
+    color: #333;
+    margin: 1rem 0 2rem;
+    text-align: center;
+}
+
+/* Course Boxes */
+.course-box {
+    background-color: #E5D0AC;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    margin-bottom: 2rem;
+    width: 100%;
+    max-width: 700px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.course-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.course-title {
+    font-size: 1.5rem;
+    color: #A31D1D;
+    margin-bottom: 1rem;
+}
+
+/* Quiz Button */
+.quiz-button {
+    background-color: #A31D1D;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.quiz-button:hover {
+    background-color: #6D2323;
+}
+/* Top Right Back Button */
+.top-right-button {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+}
+
+.top-right-button a {
+    background-color: #BF3131;
+    color: #EEEEEE;
+    padding: 0.6rem 1.2rem;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.top-right-button a:hover {
+    background-color: #7D0A0A;
+    color: #FFFFFF;
+}

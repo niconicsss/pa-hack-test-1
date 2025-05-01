@@ -1,0 +1,140 @@
+/* Reset and Base Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #FEF9E1;
+    color: #000000;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative; /* Enables absolute positioning for child elements */
+}
+
+/* Header */
+h1 {
+    font-size: 2.5rem;
+    color: #6D2323;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+p {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* Company Dropdown */
+form {
+    margin-bottom: 2rem;
+    width: 100%;
+    max-width: 500px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #A31D1D;
+}
+
+select {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid #A31D1D;
+    border-radius: 6px;
+    background-color: #FFF7DA;
+    color: #000000;
+    margin-bottom: 1.5rem;
+}
+
+.course-header {
+    width: 100%;
+    max-width: 1000px;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* Course List */
+.course-list {
+    width: 100%;
+    max-width: 1000px;
+    margin-top: 2rem;
+}
+
+.course-list ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 0;
+}
+
+.course-item {
+    background-color: #E5D0AC;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.course-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.course-item h2 {
+    font-size: 1.5rem;
+    color: #A31D1D;
+    margin-bottom: 0.75rem;
+}
+
+.course-item p {
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+/* Button */
+a.btn {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.6rem 1.2rem;
+    background-color: #A31D1D;
+    color: #FFFFFF;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+a.btn:hover {
+    background-color: #6D2323;
+}
+
+/* Back to Dashboard Button Styled */
+a.back-button {
+    position: absolute;
+    top: 1.5rem;
+    right: 2rem;
+    padding: 0.6rem 1.2rem;
+    background-color: #BF3131;
+    color: #EEEEEE;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    z-index: 1000;
+}
+
+a.back-button:hover {
+    background-color: #7D0A0A;
+    color: #FFFFFF;
+}

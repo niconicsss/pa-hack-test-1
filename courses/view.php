@@ -17,15 +17,27 @@ if (!$course) {
 }
 ?>
 
-<h1><?php echo htmlspecialchars($course['title']); ?></h1>
-<p><?php echo nl2br(htmlspecialchars($course['description'])); ?></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><?= htmlspecialchars($course['title']) ?> - Course View</title>
+    <link rel="stylesheet" href="../styles/view-course.css">
+</head>
+<body>
 
-<?php if ($course['video_url']): ?>
-    <video controls width="640">
-        <source src="<?php echo htmlspecialchars($course['video_url']); ?>" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-<?php endif; ?>
+    <h1><?= htmlspecialchars($course['title']) ?></h1>
+    <p><?= nl2br(htmlspecialchars($course['description'])) ?></p>
 
-<p><a href="../quizzes/take.php?course_id=<?php echo $course['id']; ?>">Take Quiz</a></p>
-<p><a href="../progress/index.php">Track Progress</a></p>
+    <?php if ($course['video_url']): ?>
+        <video controls width="640">
+            <source src="<?= htmlspecialchars($course['video_url']) ?>" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    <?php endif; ?>
+
+    <a class="btn" href="../quizes/index.php?course_id=<?= $course['id'] ?>">Take Quiz 📝</a>
+    <p><a href="../progress/index.php">Track Progress</a></p>
+
+</body>
+</html>
