@@ -147,7 +147,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
     .slide:nth-child(3) { background-image: url('image/f2.jpg'); animation-delay: 12s; }
     .slide:nth-child(4) { background-image: url('image/gothong.png'); animation-delay: 18s; }
     .slide:nth-child(5) { background-image: url('image/jrs.jpg'); animation-delay: 24s; }
-    .slide:nth-child(6) { background-image: url('image/lbc.jpg'); animation-delay: 30s; }
+    .slide:nth-child(6) { background-image: url('image/lbcc.jpg'); animation-delay: 30s; }
 
     @keyframes slideShow {
         0%   { opacity: 0; }
