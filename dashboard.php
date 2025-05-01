@@ -12,6 +12,12 @@ $user_id = $_SESSION['user_id'];
 $stmt = $pdo->prepare("SELECT * FROM users WHERE id = ?");
 $stmt->execute([$user_id]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+// Handle case where user is not found
+if (!$user) {
+    echo "<p style='color: red; text-align: center; font-size: 1.2rem;'>User not found. Please <a href='logout.php'>log in again</a>.</p>";
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -157,14 +163,13 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
         100% { opacity: 0; }
     }
 
-    /* Optional overlay for readability */
     .slideshow-overlay {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(255, 255, 255, 0.4); /* light overlay */
+        background: rgba(255, 255, 255, 0.4);
         z-index: -1;
     }
   </style>
