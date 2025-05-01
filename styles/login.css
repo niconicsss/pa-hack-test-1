@@ -83,3 +83,8 @@ body {
 .login-container .bottom-link a:hover {
     color: #BF3131;
 }
+.error-msg {
+    color: #E74C3C;
+    font-weight: bold;
+    margin-bottom: 10px;
+}

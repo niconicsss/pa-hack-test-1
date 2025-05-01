@@ -10,6 +10,11 @@
 <body>
     <div class="register-container">
         <h2>Register</h2>
+
+        <?php if (isset($_GET['error'])): ?>
+            <p class="error-msg"><?= htmlspecialchars($_GET['error']) ?></p>
+        <?php endif; ?>
+
         <form action="actions/register_action.php" method="POST">
             <input type="text" name="name" placeholder="Full Name (Last Name, First Name, M.I)" required>
 

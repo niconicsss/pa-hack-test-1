@@ -96,3 +96,8 @@
     font-size: 1rem;
     appearance: none;
   }  
+  .error-msg {
+    color: red;
+    font-weight: bold;
+    margin-bottom: 10px;
+}

@@ -1,7 +1,7 @@
 <?php
 session_start();
 require '../config/db.php';
- 
+
 $email = $_POST['email'];
 $password = $_POST['password'];
 
@@ -14,7 +14,9 @@ if ($user && password_verify($password, $user['password_hash'])) {
     $_SESSION['user_name'] = $user['name'];
     $_SESSION['user_role'] = $user['role'];
     header("Location: ../dashboard.php");
+    exit;
 } else {
-    echo "Invalid email or password.";
+    header("Location: ../login.php?error=1");
+    exit;
 }
 ?>
