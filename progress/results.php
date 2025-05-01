@@ -71,7 +71,7 @@ if ($progress) {
 <head>
     <meta charset="UTF-8">
     <title>Course Results</title>
-    <link rel="stylesheet" href="../styles/courses.css">
+    <link rel="stylesheet" href="styles/course-result.css">
 </head>
 <body>
 
