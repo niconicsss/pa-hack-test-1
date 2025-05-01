@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 if (!isset($_SESSION['user_id'])) {
     header('Location: index.php');
@@ -185,7 +186,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
   <!-- Top Bar -->
   <div class="logout-container">
   <img src="image/SKILOGO.png" alt="SkillCargo" class="logo">
-  <a href="../includes/logout.php">Logout</a>
+  <a href="logout.php">Logout</a>
   </div>
 
   <!-- Page Title -->

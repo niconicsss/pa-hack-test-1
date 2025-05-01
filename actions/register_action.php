@@ -16,6 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password_hash = password_hash($password, PASSWORD_BCRYPT);
 
     try {
+        // Check if the company exists and get its email domain
         $stmt = $pdo->prepare("SELECT email_domain FROM companies WHERE id = :company_id");
         $stmt->bindParam(':company_id', $company_id);
         $stmt->execute();
@@ -34,19 +35,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         }
 
+        // Insert the user
         $stmt = $pdo->prepare("INSERT INTO users (name, email, password_hash, company_id, role) 
                                VALUES (:name, :email, :password_hash, :company_id, :role)");
         $role = 'learner';
         $stmt->bindParam(':name', $name);
-        $stmt->bindParam(':email', $company_email); // Using company_email as main email
+        $stmt->bindParam(':email', $company_email);
         $stmt->bindParam(':password_hash', $password_hash);
         $stmt->bindParam(':company_id', $company_id);
         $stmt->bindParam(':role', $role);
         $stmt->execute();
 
-        echo "Registration successful! You can now <a href='../login.php'>login</a>.";
+        // Optional: Start session and set session variables
+        session_start();
+        $_SESSION['user_email'] = $company_email;
+        $_SESSION['user_name'] = $name;
+
+        // Redirect to dashboard
+        header("Location: ../dashboard.php");
+        exit;
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
+        exit;
     }
 }
 ?>

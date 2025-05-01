@@ -1,4 +1,18 @@
-<?php include 'config/db.php'; ?>
+<?php 
+session_start();
+include 'config/db.php'; 
+
+
+if (isset($_SESSION['user_id'])) {
+    header('Location: dashboard.php'); // or wherever you want to redirect
+    exit;
+}
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
