@@ -13,20 +13,22 @@
         <form action="actions/register_action.php" method="POST">
             <input type="text" name="name" placeholder="Full Name (Last Name, First Name, M.I)" required>
 
-            <!-- Only company email field -->
-            <input type="email" name="company_email" placeholder="Your Company Email (e.g., user@company.com)" required>
+            <input type="email" name="company_email" placeholder="Company Email (e.g., user@company.com)" required>
 
             <input type="password" name="password" placeholder="Password" required>
             <input type="password" name="confirm_password" placeholder="Confirm Password" required>
 
-             <!-- Dropdown for selecting company -->
-             <label for="company_id">Select your Company</label>
-                <select name="company_id" id="company_id" required>
+            <label for="company_id">Select your Company</label>
+            <select name="company_id" id="company_id" required>
                 <option value="">-- Select Company --</option>
                 <?php
-                $stmt = $pdo->query("SELECT id, name FROM companies ORDER BY name ASC");
-                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    echo "<option value='" . htmlspecialchars($row['id']) . "'>" . htmlspecialchars($row['name']) . "</option>";
+                try {
+                    $stmt = $pdo->query("SELECT id, name FROM companies ORDER BY name ASC");
+                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        echo "<option value='" . htmlspecialchars($row['id']) . "'>" . htmlspecialchars($row['name']) . "</option>";
+                    }
+                } catch (PDOException $e) {
+                    echo "<option disabled>Error loading companies</option>";
                 }
                 ?>
             </select>

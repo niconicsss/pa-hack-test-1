@@ -51,8 +51,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['user_email'] = $company_email;
         $_SESSION['user_name'] = $name;
 
-        // Redirect to dashboard
-        header("Location: ../dashboard.php");
+        // Redirect to login page
+        header("Location: ../login.php");
         exit;
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
