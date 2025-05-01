@@ -208,7 +208,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
     <section>
       <h2>🧠 Interactive Quizzes</h2>
       <p>Test your knowledge and reinforce what you've learned with quick assessments.</p>
-      <a href="quizzes/index.php">Take a Quiz</a>
+      <a href="quizes/index2.php">Take a Quiz</a>
     </section>
 
     <section>
