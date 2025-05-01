@@ -16,7 +16,15 @@
         align-items: center;
         min-height: 100vh;
     }
-
+    .logo {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        height: auto; /* Reduced from 3rem to make it smaller */
+        width: 150px;
+        /*max-width: 120px;*/ /* Optional: Limits maximum width */
+    }
     /* Top Bar Styling */
     .logout-container {
         width: 100%;
@@ -25,12 +33,13 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 1rem 2rem;
+        padding-left: 4rem; 
     }
 
     .logout-container span {
         font-size: 1.2rem;
         font-weight: bold;
+        argin-left: 0.5rem; 
     }
 
     .logout-container a {

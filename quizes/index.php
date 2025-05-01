@@ -68,7 +68,7 @@ if (empty($questions)) {
 </head>
 <body>
 
-<a href="../courses/index.php" class="back-button">← Back to Courses</a>
+<a href="../courses/index.php" class="back-button">Back to Courses</a>
 
     <h1>📝 Quiz: <?= htmlspecialchars($course['title']) ?></h1>
 

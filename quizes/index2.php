@@ -31,7 +31,7 @@ if (!$company_id) {
 <body>
 
     <div class="top-right-button">
-        <a href="../dashboard.php">← Back to Dashboard</a>
+        <a href="../dashboard.php">Back to Dashboard</a>
     </div>
 
     <h1>🧠 Take a Quiz</h1>
