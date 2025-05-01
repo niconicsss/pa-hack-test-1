@@ -196,10 +196,14 @@ VALUES
 (6, 'What does "last mile delivery" refer to?', 'The first step in shipping', 'The final step in delivering goods to customers', 'The middle stage of shipping', 'The process of storing goods in warehouses', 2),
 (6, 'Which of the following is NOT a benefit of e-commerce shipping solutions?', 'Faster delivery times', 'Lower shipping costs', 'Better customer service', 'Limited delivery options', 4);
 
+ALTER TABLE progress 
+ADD COLUMN watched_video TINYINT DEFAULT 0,
+ADD COLUMN took_quiz TINYINT DEFAULT 0;
+
 
 
 drop table companies;
 drop database digital_training;
-select * from users;
+select * from progress;
 select * from companies;
 select * from quizzes;
