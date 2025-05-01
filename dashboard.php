@@ -143,7 +143,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     .slide:nth-child(1) { background-image: url('image/2g0.jpg'); animation-delay: 0s; }
-    .slide:nth-child(2) { background-image: url('image/airspeed.jpg'); animation-delay: 6s; }
+    .slide:nth-child(2) { background-image: url('image/airspeeed.jpg'); animation-delay: 6s; }
     .slide:nth-child(3) { background-image: url('image/f2.jpg'); animation-delay: 12s; }
     .slide:nth-child(4) { background-image: url('image/gothong.png'); animation-delay: 18s; }
     .slide:nth-child(5) { background-image: url('image/jrs.jpg'); animation-delay: 24s; }
