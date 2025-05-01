@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 if (!isset($_SESSION['user_id'])) {
     header('Location: index.php');
@@ -68,23 +67,39 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     /* Main title styling */
-    h1 {
-        text-align: center;
-        font-size: 3rem;
-        margin-top: 3rem;
-        color: #6D2323;
-    }
+   /* Main title styling */
+h1 {
+    text-align: center;
+    font-size: 3rem;
+    margin-top: 10vh; /* Adjusted margin-top for a better central position */
+    color: #6D2323;
+}
 
-    /* Dashboard Section Styling */
-    .dashboard-sections {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 2rem;
-        padding: 2rem;
-        max-width: 1200px;
-        width: 100%;
-    }
+/* Dashboard Section Styling */
+.dashboard-sections {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1200px;
+    width: 100%;
+    animation: slideInFromMiddle 1s ease-out; /* Changed to a new animation */
+}
 
+/* Slide-in animation */
+@keyframes slideInFromMiddle {
+    0% {
+        transform: translateY(-50%);  /* Starting from the middle of the screen */
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+
+    /* Section styling */
     section {
         background-color: #E5D0AC;
         padding: 1.5rem;
@@ -185,8 +200,8 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
   <!-- Top Bar -->
   <div class="logout-container">
-  <img src="image/SKILOGO.png" alt="SkillCargo" class="logo">
-  <a href="logout.php">Logout</a>
+    <img src="image/SKILOGO.png" alt="SkillCargo" class="logo">
+    <a href="logout.php">Logout</a>
   </div>
 
   <!-- Page Title -->

@@ -47,7 +47,7 @@ $progress_data = $progress_stmt->fetchAll(PDO::FETCH_ASSOC);
 <body>
 
 <div class="top-right-link">
-    <a href="../dashboard.php" class="back-button">← Back to Dashboard</a>
+    <a href="../dashboard.php" class="back-button">Back to Dashboard</a>
 </div>
 
 <h1>📚 Course Progress</h1>
@@ -93,7 +93,7 @@ $progress_data = $progress_stmt->fetchAll(PDO::FETCH_ASSOC);
                     <p><strong>Progress:</strong> <?= $progress_percentage ?>%</p>
                     
                     <!-- Always show the "View Results" button -->
-                    <a class="btn" href="results.php?id=<?= $course['id'] ?>">View Results ➜</a>
+                    <a class="btn" href="results.php?id=<?= $course['id'] ?>">View Results </a>
                 </li>
             <?php endforeach; ?>
         </ul>

@@ -1,0 +1,75 @@
+/* Body and container styles */
+body {
+    font-family: 'Poppins', sans-serif; /* Modern, clean look */
+    background-color: #E5D0AC;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    animation: fadeIn 1s ease-out; /* Faster fade-in effect */
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    0% {
+        opacity: 0; /* Start with full transparency */
+    }
+    100% {
+        opacity: 1; /* End with full opacity */
+    }
+}
+
+/* Logo styles */
+.logo {
+    width: 450px;           /* Increased to 450px */
+    max-width: 95%;
+    margin-bottom: 60px;     /* Increased margin for better spacing */
+    image-rendering: auto;   /* Maintains image quality */
+    animation: fadeIn 1s ease-out; /* Faster fade-in to logo */
+}
+
+/* Heading styles */
+h2 {
+    font-size: 2.5rem;        /* Increased font size for better visibility */
+    color: #6D2323;
+    margin-top: 0;            /* Ensure there's no extra space */
+    margin-bottom: 1.5rem;    /* Increased bottom margin */
+    animation: fadeIn 1s ease-out; /* Faster fade-in to heading */
+}
+
+/* Paragraph styles */
+p {
+    font-size: 1.5rem;        /* Slightly larger font for better readability */
+    color: #333;
+    margin-bottom: 3rem;      /* Increased bottom margin */
+    animation: fadeIn 1s ease-out; /* Faster fade-in to paragraph */
+}
+
+/* Button styles */
+.get-started-btn {
+    padding: 15px 35px;      /* Larger padding for a more prominent button */
+    background-color: #6D2323;
+    color: white;
+    font-size: 18px;         /* Larger font size for the button text */
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    animation: fadeIn 1s ease-out; /* Faster fade-in to the button */
+}
+
+.get-started-btn:hover {
+    background-color: #A31D1D;
+}
+
+/* Catchphrase Styling */
+p.catchphrase {
+    font-size: 1.4rem;       /* Larger font size for catchphrase */
+    color: black;            /* Match the theme */
+    margin-bottom: 3rem;     /* More space below the catchphrase */
+    font-weight: bold;       /* Make the catchphrase stand out */
+    animation: fadeIn 1s ease-out; /* Faster fade-in for the catchphrase */
+}

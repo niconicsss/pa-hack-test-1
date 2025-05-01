@@ -1,4 +1,5 @@
 /* Resetting */
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -168,3 +169,30 @@ a:hover {
     background-color: #7D0A0A;
     color: #FFFFFF;
 }
+
+/* Styling for the delete form with transparent background */
+.delete-form {
+    background-color: transparent;  /* Transparent background */
+    padding: 10px;
+    margin-top: 5px;
+    display: inline-block; /* Ensure the form stays inline with other content */
+}
+
+.delete-form .delete-button {
+    background-color: #E74C3C;  /* Transparent background for the button */
+    color: #FFFFFF;  /* Red text color */
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.delete-form .delete-button:hover {
+    background-color: #E74C3C;  /* Red background on hover */
+    color: #FFFFFF;  /* White text on hover */
+}
+
+
+
+

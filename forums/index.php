@@ -109,10 +109,11 @@ $threads = $pdo->query("SELECT forum_threads.*, users.name FROM forum_threads
         <small>Posted by <?= htmlspecialchars($thread['name']) ?> on <?= $thread['created_at'] ?></small>
 
         <?php if ($thread['user_id'] == $userId): ?>
-            <form method="POST" onsubmit="return confirm('Are you sure you want to delete this thread?');" style="margin-top:5px; display:inline;">
-                <input type="hidden" name="delete_thread_id" value="<?= $thread['id'] ?>">
-                <button type="submit">Delete</button>
-            </form>
+            <form method="POST" onsubmit="return confirm('Are you sure you want to delete this thread?');" class="delete-form" style="margin-top:5px; display:inline;">
+    <input type="hidden" name="delete_thread_id" value="<?= $thread['id'] ?>">
+    <button type="submit" class="delete-button">Delete</button>
+</form>
+
             <a href="index.php?edit=<?= $thread['id'] ?>" style="margin-left:10px;">Edit</a>
         <?php endif; ?>
     </div>
