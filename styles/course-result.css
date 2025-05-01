@@ -1,0 +1,114 @@
+/* General Styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Header Styling */
+h1 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+h2 {
+    color: #3498db;
+    margin: 15px 0;
+    font-size: 1.5rem;
+}
+
+p {
+    margin-bottom: 20px;
+    color: #555;
+}
+
+/* Back Button */
+.top-right-link {
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+.back-button {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: #e74c3c;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.back-button:hover {
+    background-color: #c0392b;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    background-color: white;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f8f9fa;
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+tr:hover {
+    background-color: #f5f5f5;
+}
+
+/* Status Styling */
+td:nth-child(2) {
+    font-weight: 500;
+}
+
+td:nth-child(2):contains("Completed") {
+    color: #27ae60;
+}
+
+td:nth-child(2):contains("Not Completed") {
+    color: #e74c3c;
+}
+
+/* Total Row Styling */
+tr:last-child {
+    font-weight: bold;
+    background-color: #f8f9fa;
+}
+
+/* Percentage Column */
+td:nth-child(3) {
+    font-family: 'Courier New', monospace;
+    color: #2c3e50;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+    
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+}

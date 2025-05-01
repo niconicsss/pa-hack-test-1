@@ -71,12 +71,12 @@ if ($progress) {
 <head>
     <meta charset="UTF-8">
     <title>Course Results</title>
-    <link rel="stylesheet" href="../styles/courses.css">
+    <link rel="stylesheet" href="../styles/course-result.css">
 </head>
 <body>
 
 <div class="top-right-link">
-    <a href="../dashboard.php" class="back-button">← Back to Dashboard</a>
+    <a href="../dashboard.php" class="back-button">Back to Dashboard</a>
 </div>
 
 <h1>📚 Course Results</h1>
