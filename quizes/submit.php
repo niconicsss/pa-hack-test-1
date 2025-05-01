@@ -24,15 +24,7 @@ $total = count($answers);
 <html>
 <head>
     <title>Quiz Results</title>
-    <link rel="stylesheet" href="../styles/quiz.css">
-    <style>
-        body { font-family: Arial, sans-serif; padding: 20px; background: #f9f9f9; }
-        .question { margin-bottom: 20px; }
-        .correct { color: green; }
-        .incorrect { color: red; }
-        .score { font-size: 1.2em; font-weight: bold; margin-top: 30px; }
-        a { text-decoration: none; color: #007BFF; }
-    </style>
+    <link rel="stylesheet" href="../styles/submit.css">
 </head>
 <body>
 
@@ -70,7 +62,7 @@ foreach ($answers as $quiz_id => $selected_option) {
     Your Score: <?= $score ?> / <?= $total ?> (<?= round(($score / $total) * 100) ?>%)
 </div>
 
-<p><a href="../dashboard.php">← Back to Dashboard</a></p>
+<p><a href="../dashboard.php">Back to Dashboard</a></p>
 
 </body>
 </html>
