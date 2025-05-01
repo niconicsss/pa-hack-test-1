@@ -184,8 +184,8 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
   <!-- Top Bar -->
   <div class="logout-container">
-    <span>Welcome, <?php echo htmlspecialchars($user['name']); ?></span>
-    <a href="logout.php">🚪 Logout</a>
+  <img src="image/SKILOGO.png" alt="SkillCargo" class="logo">
+    <a href="logout.php">Logout</a>
   </div>
 
   <!-- Page Title -->
