@@ -52,7 +52,7 @@ $progress_data = $progress_stmt->fetchAll(PDO::FETCH_KEY_PAIR);
 <body>
 
 <div class="top-right-link">
-    <a href="../dashboard.php" class="back-button">← Back to Dashboard</a>
+    <a href="../dashboard.php" class="back-button"> Back to Dashboard</a>
 </div>
 
     <h1>📚 Course Library</h1>
@@ -70,7 +70,7 @@ $progress_data = $progress_stmt->fetchAll(PDO::FETCH_KEY_PAIR);
                         <p><?= htmlspecialchars($course['description']) ?></p>
                         <p><strong>Level:</strong> <?= ucfirst($course['level']) ?></p>
                         <p><strong>Status:</strong> <?= htmlspecialchars($progress_data[$course['id']] ?? 'Not Started') ?></p>
-                        <a class="btn" href="view.php?id=<?= $course['id'] ?>">Start Learning ➜</a>
+                        <a class="btn" href="view.php?id=<?= $course['id'] ?>">Start Learning </a>
                     </li>
                 <?php endforeach; ?>
             </ul>
