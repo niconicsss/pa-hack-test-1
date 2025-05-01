@@ -37,32 +37,19 @@ $progress_stmt->execute([$user_id, $course_id]);
 $progress = $progress_stmt->fetch(PDO::FETCH_ASSOC);
 
 // Calculate progress percentages
+$progress_percentage = 0;
 $video_progress = 0;
 $quiz_progress = 0;
-$progress_percentage = 0;
-
-// Handle progress status
-$video_status = 'Not Completed';
-$quiz_status = 'Not Completed';
-$total_status = 'Not Started';
 
 if ($progress) {
     if ($progress['watched_video'] == 1) {
-        $video_progress = 50;
-        $video_status = 'Completed';
+        $video_progress = 50; // 50% for watching the video
     }
     if ($progress['took_quiz'] == 1) {
-        $quiz_progress = 50;
-        $quiz_status = 'Completed';
+        $quiz_progress = 50; // 50% for taking the quiz
     }
 
     $progress_percentage = $video_progress + $quiz_progress;
-
-    if ($progress_percentage == 100) {
-        $total_status = 'Completed';
-    } elseif ($progress_percentage > 0) {
-        $total_status = 'In Progress';
-    }
 }
 ?>
 
@@ -71,7 +58,7 @@ if ($progress) {
 <head>
     <meta charset="UTF-8">
     <title>Course Results</title>
-    <link rel="stylesheet" href="styles/course-result.css">
+    <link rel="stylesheet" href="../styles/courses.css">
 </head>
 <body>
 
@@ -95,17 +82,17 @@ if ($progress) {
     <tbody>
         <tr>
             <td>Video</td>
-            <td><?= $video_status ?></td>
+            <td><?= $progress['watched_video'] == 1 ? 'Completed' : 'Not Completed' ?></td>
             <td><?= $video_progress ?>%</td>
         </tr>
         <tr>
             <td>Quiz</td>
-            <td><?= $quiz_status ?></td>
+            <td><?= $progress['took_quiz'] == 1 ? 'Completed' : 'Not Completed' ?></td>
             <td><?= $quiz_progress ?>%</td>
         </tr>
         <tr>
             <td><strong>Total Progress</strong></td>
-            <td><strong><?= $total_status ?></strong></td>
+            <td><strong><?= $progress_percentage == 100 ? 'Completed' : 'In Progress' ?></strong></td>
             <td><strong><?= $progress_percentage ?>%</strong></td>
         </tr>
     </tbody>
