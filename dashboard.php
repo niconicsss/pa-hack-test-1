@@ -202,7 +202,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
     <section>
       <h2>📈 Progress Tracking</h2>
       <p>Track your learning journey and monitor your improvement over time.</p>
-      <a href="progress/index.php">View Progress</a>
+      <a href="progress/index2.php">View Progress</a>
     </section>
 
     <section>
